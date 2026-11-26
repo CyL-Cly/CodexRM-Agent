@@ -234,12 +234,20 @@ func (a *Agent) directFileRPC(ctx context.Context, app *appserver.Client, d *dir
 		if err != nil && !errors.Is(err, io.EOF) {
 			return nil, errors.New("无法读取文件夹")
 		}
+		// Compare canonical paths so a Windows short directory name does not
+		// expose the private data directory in a listing of its parent.
+		listingDir := filepath.Join(base, path)
+		if private != "" {
+			if resolved, err := filepath.EvalSymlinks(listingDir); err == nil {
+				listingDir = resolved
+			}
+		}
 		entries := make([]directFileEntry, 0, len(items))
 		for _, entry := range items[:min(len(items), directFileListLimit)] {
 			if ctx.Err() != nil {
 				return nil, ctx.Err()
 			}
-			if directPathProtected(private, base, filepath.Join(path, entry.Name())) {
+			if directPathProtected(private, listingDir, entry.Name()) {
 				continue
 			}
 			item, err := entry.Info()
