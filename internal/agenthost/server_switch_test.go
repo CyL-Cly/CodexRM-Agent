@@ -74,6 +74,7 @@ func TestServerSwitchPreservesExistingIdentityAndLocalRobotRelay(t *testing.T) {
 		t.Fatal(err)
 	}
 	page := "http://" + u.Host
+	token := testSettingsToken(t, h, page, u.Fragment)
 	await := func(relay string) {
 		t.Helper()
 		for deadline := time.Now().Add(4 * time.Second); time.Now().Before(deadline); {
@@ -94,7 +95,7 @@ func TestServerSwitchPreservesExistingIdentityAndLocalRobotRelay(t *testing.T) {
 	}
 	switchTo := func(relay, key string) {
 		t.Helper()
-		if code, body := request(t, page, u.Fragment, http.MethodPut, "/api/settings", map[string]string{"server": relay, "enrollmentKey": key}); code != http.StatusOK {
+		if code, body := request(t, page, token, http.MethodPut, "/api/settings", map[string]string{"server": relay, "enrollmentKey": key}); code != http.StatusOK {
 			t.Fatalf("save: %d %s", code, body)
 		}
 		await(relay)
@@ -110,7 +111,7 @@ func TestServerSwitchPreservesExistingIdentityAndLocalRobotRelay(t *testing.T) {
 	}
 	pairMain := func(relay string) string {
 		t.Helper()
-		status, body := request(t, page, u.Fragment, http.MethodPost, "/api/pair", nil)
+		status, body := request(t, page, token, http.MethodPost, "/api/pair", nil)
 		var pair struct{ Code string }
 		if status != http.StatusOK || json.Unmarshal(body, &pair) != nil || pair.Code == "" {
 			t.Fatalf("pair main: %d", status)

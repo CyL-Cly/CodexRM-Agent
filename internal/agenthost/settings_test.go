@@ -62,7 +62,28 @@ func startHost(t *testing.T, cfg clientconfig.Connection, installDirs ...string)
 		}
 	}
 	t.Cleanup(stop)
-	return h, "http://" + u.Host, u.Fragment, stop
+	base := "http://" + u.Host
+	return h, base, testSettingsToken(t, h, base, u.Fragment), stop
+}
+
+// Linux uses the password/session flow even on loopback; desktop uses the URL token.
+func testSettingsToken(t *testing.T, h *Host, base, fragment string) string {
+	t.Helper()
+	if runtime.GOOS != "linux" {
+		return fragment
+	}
+	access, err := readSettingsAccess(h.settingsAccessPath())
+	if err != nil {
+		t.Fatal(err)
+	}
+	code, body := request(t, base, access.Password, http.MethodPost, "/api/settings/login", nil)
+	var session struct {
+		Token string `json:"sessionToken"`
+	}
+	if err = json.Unmarshal(body, &session); code != http.StatusOK || err != nil || session.Token == "" {
+		t.Fatalf("settings login: status %d, decode %v", code, err)
+	}
+	return session.Token
 }
 
 func request(t *testing.T, base, token, method, path string, input any) (int, []byte) {
@@ -90,7 +111,11 @@ func request(t *testing.T, base, token, method, path string, input any) (int, []
 func TestLocalSettingsListenerLifetimeAndAccess(t *testing.T) {
 	h, base, token, stop := startHost(t, clientconfig.Connection{})
 	address, err := h.SettingsURL()
-	if err != nil || address != base+"/#"+token {
+	wantAddress := base + "/"
+	if runtime.GOOS != "linux" {
+		wantAddress += "#" + token
+	}
+	if err != nil || address != wantAddress {
 		t.Fatalf("listener changed: %s, %v", address, err)
 	}
 	if !strings.HasPrefix(base, "http://127.0.0.1:") {
@@ -158,6 +183,9 @@ func TestSettingsWeChatCapability(t *testing.T) {
 }
 
 func TestUnconfiguredStartupOpensWorkingLocalSettings(t *testing.T) {
+	if runtime.GOOS == "linux" {
+		t.Skip("Linux starts headless and does not open a settings browser")
+	}
 	h, err := New(filepath.Join(t.TempDir(), ".state", "connection.json"), "", clientconfig.Connection{}, agent.Config{})
 	if err != nil {
 		t.Fatal(err)
@@ -298,6 +326,9 @@ func manualUpdateFeed(t *testing.T, versionCode int64) *httptest.Server {
 }
 
 func TestManualUpdateChecksImmediatelyWithoutRestartingCurrentVersion(t *testing.T) {
+	if runtime.GOOS != "windows" {
+		t.Skip("uses a Windows installation and update-feed fixture")
+	}
 	feed := manualUpdateFeed(t, release.VersionCode)
 	h, base, token, _ := startHost(t, clientconfig.Connection{}, t.TempDir())
 	useUpdateFeed(t, h, feed)
@@ -317,6 +348,9 @@ func TestManualUpdateChecksImmediatelyWithoutRestartingCurrentVersion(t *testing
 }
 
 func TestManualUpdateStartsHelperAndStopsRunningHost(t *testing.T) {
+	if runtime.GOOS != "windows" {
+		t.Skip("uses the Windows detached update helper")
+	}
 	feed := manualUpdateFeed(t, release.VersionCode+1)
 	h, _, _, _ := startHost(t, clientconfig.Connection{}, t.TempDir())
 	useUpdateFeed(t, h, feed)
