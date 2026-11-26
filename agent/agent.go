@@ -128,6 +128,7 @@ type Agent struct {
 	writeMu        sync.Mutex
 	eventMu        sync.Mutex
 	direct         map[string]*directSession
+	lanAuth        atomic.Pointer[lanAuthorization]
 	eventClients   map[string]bool  // nil until this RM supplies a routing snapshot
 	relayEvents    *relayEventQueue // protected by eventMu
 	relay          *websocket.Conn
@@ -460,6 +461,9 @@ func (a *Agent) Run(ctx context.Context) error {
 			a.forward(raw)
 			a.queueNotification(appCtx, app, raw)
 		})
+		if a.cfg.SecureRelay {
+			go a.runLAN(appCtx, app)
+		}
 		if e = a.startConfiguredOneBot(appCtx, app); e != nil {
 			// A local bot configuration must not take down browser access to Codex.
 			log.Printf("OneBot startup failed; continuing without OneBot: %v", e)

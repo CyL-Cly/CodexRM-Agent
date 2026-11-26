@@ -3,7 +3,7 @@ module github.com/CyL-Cly/CodexRM-Agent
 go 1.24
 
 require (
-	github.com/CyL-Cly/CodexRM-Server v0.0.0-20261126074707-6dccc103e137
+	github.com/CyL-Cly/CodexRM-Server v0.0.0-20261126133803-f2ed27111db2
 	github.com/getlantern/systray v1.2.2
 	github.com/google/uuid v1.6.0
 	github.com/gorilla/websocket v1.5.3

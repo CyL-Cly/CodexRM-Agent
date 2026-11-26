@@ -207,6 +207,9 @@ func (r *encryptedRelay) confirm(client string, f *protocol.SecureFrame) {
 	b, err := s.channel.Seal(ready)
 	if err == nil && r.send(client, protocol.SecureConfirm, b) == nil {
 		r.active[client] = s
+		if s.route != "" {
+			r.agent.refreshLANAuthorization()
+		}
 	}
 }
 
@@ -301,7 +304,7 @@ func (r *encryptedRelay) publish(plain []byte) {
 		r.agent.eventMu.Lock()
 		for client, direct := range r.agent.direct {
 			for _, id := range e.SkipDirect {
-				if id == direct.id && direct.active && time.Now().Before(direct.lease) {
+				if id == direct.id && direct.live(time.Now()) {
 					skip[client] = true
 				}
 			}

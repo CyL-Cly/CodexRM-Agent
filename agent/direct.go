@@ -36,8 +36,20 @@ type directSession struct {
 	files           directFiles
 	phoneFiles      directFiles
 	// Protected by Agent.eventMu, which also serializes publications with switching.
-	active bool
-	lease  time.Time
+	active  bool
+	lease   time.Time
+	lanAuth *lanAuthorization // independent LAN, not dependent on the RM socket
+}
+
+// Caller holds eventMu.
+func (d *directSession) live(now time.Time) bool {
+	if !d.active || (d.ctx != nil && d.ctx.Err() != nil) {
+		return false
+	}
+	if d.lanAuth != nil {
+		return d.lanAuth.permits(d.client, now)
+	}
+	return now.Before(d.lease)
 }
 
 func (d *directSession) send(env protocol.Envelope) error {
@@ -127,12 +139,9 @@ func (a *Agent) publishEvent(env protocol.Envelope) {
 	a.eventMu.Lock()
 	defer a.eventMu.Unlock()
 	queue := a.relayEvents
-	if queue == nil {
-		return
-	}
 	delivered := 0
 	for id, d := range a.direct {
-		if d.active && time.Now().Before(d.lease) && (env.ClientID == "" || env.ClientID == id) {
+		if d.live(time.Now()) && (env.ClientID == "" || env.ClientID == id) {
 			if d.send(env) == nil {
 				if env.ClientID != "" {
 					return
@@ -147,7 +156,9 @@ func (a *Agent) publishEvent(env protocol.Envelope) {
 	if env.ClientID == "" && a.eventClients != nil && delivered == len(a.eventClients) {
 		return
 	}
-	queue.enqueue(env)
+	if queue != nil {
+		queue.enqueue(env)
+	}
 }
 
 func (a *Agent) directSignal(ctx context.Context, app *appserver.Client, conn *websocket.Conn, slots chan struct{}, env protocol.Envelope) {
@@ -204,6 +215,10 @@ func (a *Agent) directSignalWithKey(ctx context.Context, app *appserver.Client, 
 	}
 	d := a.direct[env.ClientID]
 	if sig.Kind == protocol.P2PKindStart {
+		if d != nil && d.lanAuth != nil && d.live(time.Now()) {
+			_ = a.write(conn, protocol.Envelope{Type: protocol.TypeP2P, ClientID: env.ClientID, P2P: protocol.P2P(protocol.P2PKindStop, sig.ID)})
+			return
+		}
 		if d != nil {
 			d.cancel()
 			delete(a.direct, env.ClientID)
@@ -221,7 +236,7 @@ func (a *Agent) directSignalWithKey(ctx context.Context, app *appserver.Client, 
 		go a.runDirect(app, conn, slots, d, *sig)
 		return
 	}
-	if d == nil || d.id != sig.ID {
+	if d == nil || d.lanAuth != nil || d.id != sig.ID {
 		return
 	}
 	switch sig.Kind {
@@ -245,7 +260,7 @@ func (a *Agent) directSignalWithKey(ctx context.Context, app *appserver.Client, 
 		default:
 		}
 	case protocol.P2PKindLease:
-		if d.active && time.Now().Before(d.lease) {
+		if d.live(time.Now()) {
 			d.lease = time.Now().Add(protocol.P2PLease)
 		}
 	case protocol.P2PKindStop:
@@ -260,16 +275,8 @@ func (a *Agent) runDirect(app *appserver.Client, conn *websocket.Conn, slots cha
 	}
 	stop := protocol.P2P(protocol.P2PKindStop, d.id)
 	defer func() {
-		d.cancel()
-		d.files.close()
-		a.closePhoneReader(d)
-		a.clearDirectShares(d)
-		a.eventMu.Lock()
-		defer a.eventMu.Unlock()
-		if a.direct[d.client] == d {
-			delete(a.direct, d.client)
-			_ = signal(stop)
-		}
+		a.cleanupDirect(d)
+		_ = signal(stop)
 	}()
 	attempt, cancel := context.WithTimeout(d.ctx, protocol.P2PAttempt)
 	defer cancel()
@@ -322,10 +329,32 @@ func (a *Agent) runDirect(app *appserver.Client, conn *websocket.Conn, slots cha
 	d.active, d.lease = true, time.Now().Add(protocol.P2PLease)
 	a.eventMu.Unlock()
 	cancel()
-	stopTracking := desktop.TrackDirectPeer(d.ctx, a.cfg.DataDir, d.client)
-	defer stopTracking()
 	path := link.Path()
 	log.Printf("p2p direct active state=%s lan=%t ipv6=%t bound=%t channel=%s network=%s adapter=%s", prepared.State(), link.IsLAN(), link.IsIPv6(), link.UsesBoundSource(), path.Channel, path.Network, path.Adapter)
+	a.serveDirectLink(app, slots, d, link, prepared.MarkRelay)
+}
+
+func (a *Agent) cleanupDirect(d *directSession) {
+	d.cancel()
+	d.files.close()
+	a.closePhoneReader(d)
+	a.clearDirectShares(d)
+	a.eventMu.Lock()
+	defer a.eventMu.Unlock()
+	if a.direct[d.client] == d {
+		delete(a.direct, d.client)
+	}
+}
+
+func (a *Agent) directLive(d *directSession) bool {
+	a.eventMu.Lock()
+	defer a.eventMu.Unlock()
+	return a.direct[d.client] == d && d.live(time.Now())
+}
+
+func (a *Agent) serveDirectLink(app *appserver.Client, slots chan struct{}, d *directSession, link *p2p.Link, markRelay func()) {
+	stopTracking := desktop.TrackDirectPeer(d.ctx, a.cfg.DataDir, d.client)
+	defer stopTracking()
 	go link.WatchQuality(d.ctx)
 	go a.serveDirectShares(d, link)
 	go func() {
@@ -341,14 +370,11 @@ func (a *Agent) runDirect(app *appserver.Client, conn *websocket.Conn, slots cha
 			case <-d.ctx.Done():
 				return
 			case b := <-d.out:
-				if link.Write(b) != nil {
+				if !a.directLive(d) || link.Write(b) != nil {
 					return
 				}
 			case <-tick.C:
-				a.eventMu.Lock()
-				live := time.Now().Before(d.lease)
-				a.eventMu.Unlock()
-				if !live {
+				if !a.directLive(d) {
 					return
 				}
 			}
@@ -358,8 +384,10 @@ func (a *Agent) runDirect(app *appserver.Client, conn *websocket.Conn, slots cha
 		b, err := link.Read()
 		if err != nil {
 			if fb := link.Fallback(); fb.LastReason != "" {
-				prepared.MarkRelay()
-				log.Printf("p2p direct: fallback to RM relay reason=%s auto=%d manual=%d state=%s", fb.LastReason, fb.AutoRelaySwitches, fb.ManualRelaySwitches, prepared.State())
+				if markRelay != nil {
+					markRelay()
+				}
+				log.Printf("p2p direct: fallback to RM relay reason=%s auto=%d manual=%d", fb.LastReason, fb.AutoRelaySwitches, fb.ManualRelaySwitches)
 			}
 			return
 		}
@@ -367,10 +395,7 @@ func (a *Agent) runDirect(app *appserver.Client, conn *websocket.Conn, slots cha
 		if json.Unmarshal(b, &env) != nil || env.Type != protocol.TypeClientMessage || !json.Valid(env.Message) {
 			return
 		}
-		a.eventMu.Lock()
-		live := a.direct[d.client] == d && d.ctx.Err() == nil && time.Now().Before(d.lease)
-		a.eventMu.Unlock()
-		if !live {
+		if !a.directLive(d) {
 			return
 		}
 		// The direct transport authenticates the socket, never the caller-supplied envelope.

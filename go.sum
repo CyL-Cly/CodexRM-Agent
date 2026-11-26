@@ -1,5 +1,7 @@
 github.com/CyL-Cly/CodexRM-Server v0.0.0-20261126074707-6dccc103e137 h1:t+mJjTRSLlIawbWmaG6N/8bwl46WCkOG5kiyUx1sSpw=
 github.com/CyL-Cly/CodexRM-Server v0.0.0-20261126074707-6dccc103e137/go.mod h1:28Gsv8XGtTA+UPrMKCDgaRnG3wFJBovWuXNJo7SNPS4=
+github.com/CyL-Cly/CodexRM-Server v0.0.0-20261126133803-f2ed27111db2 h1:ZaimrbH41cfD3xtV3B0ajO7EDagVsBkYLC68Ad2XDBQ=
+github.com/CyL-Cly/CodexRM-Server v0.0.0-20261126133803-f2ed27111db2/go.mod h1:28Gsv8XGtTA+UPrMKCDgaRnG3wFJBovWuXNJo7SNPS4=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
