@@ -58,7 +58,10 @@ type mentionedFileIndex struct {
 	next int
 }
 
-type mentionedFile struct{ thread, path string }
+type mentionedFile struct {
+	thread, path  string
+	visualization bool
+}
 
 type assistantFileItem struct{ Type, Text string }
 
@@ -149,26 +152,38 @@ func mentionedPathKey(path string) string {
 }
 
 func (s *mentionedFileIndex) addItem(thread string, item assistantFileItem) {
-	if thread == "" || len(thread) > 128 || item.Type != "agentMessage" || !strings.Contains(item.Text, "[") {
+	if thread == "" || len(thread) > 128 || item.Type != "agentMessage" ||
+		!strings.Contains(item.Text, "[") && !strings.Contains(item.Text, visualizationRefPrefix) && !strings.Contains(item.Text, visualizationDirective) {
 		return
 	}
 	markdown := []byte(item.Text[:min(len(item.Text), 65536)])
-	var paths []string
+	var paths []mentionedFile
 	_ = ast.Walk(goldmark.DefaultParser().Parse(text.NewReader(markdown)), func(n ast.Node, enter bool) (ast.WalkStatus, error) {
-		if enter {
-			var dest []byte
-			switch node := n.(type) {
-			case *ast.Link:
-				dest = node.Destination
-			case *ast.Image:
-				dest = node.Destination
+		if !enter {
+			return ast.WalkContinue, nil
+		}
+		switch node := n.(type) {
+		case *ast.Link:
+			if p := localMentionDestination(node.Destination); p != "" {
+				paths = append(paths, mentionedFile{thread: thread, path: p})
 			}
-			if p := localMentionDestination(dest); p != "" {
-				paths = append(paths, p)
-				if len(paths) == 64 {
-					return ast.WalkStop, nil
+		case *ast.Image:
+			if p := localMentionDestination(node.Destination); p != "" {
+				paths = append(paths, mentionedFile{thread: thread, path: p})
+			}
+		case *ast.Paragraph:
+			if node.Parent().Kind() != ast.KindDocument {
+				break
+			}
+			for i := 0; i < node.Lines().Len() && len(paths) < 64; i++ {
+				segment := node.Lines().At(i)
+				if p := parseVisualizationReference(string(segment.Value(markdown))); p != "" {
+					paths = append(paths, mentionedFile{thread: thread, path: p, visualization: true})
 				}
 			}
+		}
+		if len(paths) == 64 {
+			return ast.WalkStop, nil
 		}
 		return ast.WalkContinue, nil
 	})
@@ -180,8 +195,7 @@ func (s *mentionedFileIndex) addItem(thread string, item assistantFileItem) {
 	if s.seen == nil {
 		s.seen = make(map[mentionedFile]struct{})
 	}
-	for _, p := range paths {
-		key := mentionedFile{thread, p}
+	for _, key := range paths {
 		if _, ok := s.seen[key]; ok {
 			continue
 		}
@@ -197,9 +211,13 @@ func (s *mentionedFileIndex) addItem(thread string, item assistantFileItem) {
 }
 
 func (s *mentionedFileIndex) contains(thread, path string) bool {
+	return s.containsKind(thread, path, false)
+}
+
+func (s *mentionedFileIndex) containsKind(thread, path string, visualization bool) bool {
 	s.mu.RLock()
 	defer s.mu.RUnlock()
-	_, ok := s.seen[mentionedFile{thread, mentionedPathKey(path)}]
+	_, ok := s.seen[mentionedFile{thread, mentionedPathKey(path), visualization}]
 	return ok
 }
 
@@ -210,6 +228,10 @@ func (a *Agent) mentionedFileLocation(ctx context.Context, app *appserver.Client
 	if app == nil || !a.supportsDirectFiles() || params["scope"] == "computer" || !a.mentionedFiles.contains(thread, path) {
 		return "", "", errFileNotMentioned
 	}
+	return threadWorkspaceFile(ctx, app, thread, path)
+}
+
+func threadWorkspaceFile(ctx context.Context, app *appserver.Client, thread, path string) (base, rel string, err error) {
 	callCtx, cancel := context.WithTimeout(ctx, 8*time.Second)
 	defer cancel()
 	raw, err := app.Call(callCtx, "thread/read", map[string]any{"threadId": thread, "includeTurns": false})

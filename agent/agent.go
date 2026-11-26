@@ -861,7 +861,7 @@ func (a *Agent) handle(ctx context.Context, app *appserver.Client, send sendEnve
 				return
 			}
 		}
-		a.respond(send, env, mustJSON(map[string]any{"name": a.cfg.Name, "cwd": a.cfg.Cwd, "mock": a.cfg.Mock, "version": release.VersionName, "os": runtime.GOOS, "workspaces": true, "threadSnapshots": true, "conversationTools": true, "providerModels": true, "providerManagement": a.supportsProviderManagement(), "sameModelProviderSwitch": !a.cfg.Mock && a.cfg.AppServerURL == "", "threadModelProviderSwitch": !a.cfg.Mock && a.cfg.AppServerURL == "" && a.cfg.DataDir != "", "messageQueue": true, "images": a.localEvent == nil, "directFiles": a.localEvent == nil && a.allowsFileManagement(), "computerFiles": a.localEvent == nil && a.allowsFileManagement(), "mentionedFileDownloads": a.localEvent == nil && a.supportsDirectFiles(), "attachments": map[string]any{"maxSize": attachmentMaxSize, "chunkSize": attachmentChunkSize, "relayImages": true}, "phoneTransfer": a.localEvent == nil, "phoneTransferBatches": a.localEvent == nil && desktop.ReceivesFiles, "desktopShare": a.localEvent == nil && a.cfg.AllowFileManagement && desktop.ReceivesFiles, "remoteUpdate": a.cfg.CheckForUpdate != nil, "transport": map[bool]string{true: "websocket", false: "stdio"}[a.cfg.AppServerURL != ""]}), nil)
+		a.respond(send, env, mustJSON(map[string]any{"name": a.cfg.Name, "cwd": a.cfg.Cwd, "mock": a.cfg.Mock, "version": release.VersionName, "os": runtime.GOOS, "workspaces": true, "threadSnapshots": true, "inlineVisualizations": a.supportsDirectFiles(), "conversationTools": true, "providerModels": true, "providerManagement": a.supportsProviderManagement(), "sameModelProviderSwitch": !a.cfg.Mock && a.cfg.AppServerURL == "", "threadModelProviderSwitch": !a.cfg.Mock && a.cfg.AppServerURL == "" && a.cfg.DataDir != "", "messageQueue": true, "images": a.localEvent == nil, "directFiles": a.localEvent == nil && a.allowsFileManagement(), "computerFiles": a.localEvent == nil && a.allowsFileManagement(), "mentionedFileDownloads": a.localEvent == nil && a.supportsDirectFiles(), "attachments": map[string]any{"maxSize": attachmentMaxSize, "chunkSize": attachmentChunkSize, "relayImages": true}, "phoneTransfer": a.localEvent == nil, "phoneTransferBatches": a.localEvent == nil && desktop.ReceivesFiles, "desktopShare": a.localEvent == nil && a.cfg.AllowFileManagement && desktop.ReceivesFiles, "remoteUpdate": a.cfg.CheckForUpdate != nil, "transport": map[bool]string{true: "websocket", false: "stdio"}[a.cfg.AppServerURL != ""]}), nil)
 		a.mu.Lock()
 		pending := []approval{}
 		for _, p := range a.approvals {
@@ -922,6 +922,11 @@ func (a *Agent) handle(ctx context.Context, app *appserver.Client, send sendEnve
 		callCtx, cancel := context.WithTimeout(ctx, 30*time.Second)
 		defer cancel()
 		result, err := a.modelCatalog(callCtx, app)
+		a.respond(send, env, mustJSON(result), err)
+		return
+	}
+	if req.Method == "codexrm/visualization/read" {
+		result, err := a.readVisualization(ctx, app, params)
 		a.respond(send, env, mustJSON(result), err)
 		return
 	}
