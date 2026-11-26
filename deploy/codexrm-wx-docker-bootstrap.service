@@ -1,0 +1,10 @@
+[Unit]
+Description=Install Docker Engine and Compose for CodexRM wxbot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/codexrm-wx-bootstrap -wx-install-helper
+TimeoutStartSec=20min
+Environment=PATH=/usr/sbin:/usr/bin:/sbin:/bin

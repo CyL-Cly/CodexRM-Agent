@@ -1,0 +1,55 @@
+# Local runtime state and credentials
+/.signature/
+.state/
+.env
+.env.*
+!.env.example
+server.env
+publish.config.json
+publish.session.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.7z
+*-private.zip
+
+# Build and test output
+bin/
+dist/
+*.exe
+*.test
+*.log
+coverage.out
+
+# Local engineering notes and reference material (not distributed)
+.work/
+codex/
+ChatGPT.html
+ChatGPT_files/
+docs/deployments/
+docs/reviews/
+docs/provider-models-*.md
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Keep only the top-level README under version control
+*.[mM][dD]
+!/README.md
+
+# Local HiUI skills, generated runtime and frontend build output
+/.agents/skills/
+/.local-context/
+/src/components/hiui-design-runtime/
+/node_modules/
+/web/hiui/
+
+# Local tool caches and task artifacts
+/artifacts/
+/.qoder-input-images/
+.web-reverse-tool-dir
+.web-reverse-workspace-root

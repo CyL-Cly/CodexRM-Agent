@@ -1,0 +1,4558 @@
+[
+  {
+    "id": "get-chat-room-settings",
+    "module": "群插件设置",
+    "label": "获取群设置",
+    "method": "GET",
+    "path": "/chat-room-settings",
+    "fields": [
+      {
+        "key": "chat_room_id",
+        "label": "群业务ID",
+        "input": "query",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-chat-room-settings",
+    "module": "群插件设置",
+    "label": "保存群设置",
+    "method": "POST",
+    "path": "/chat-room-settings",
+    "fields": [
+      {
+        "key": "chat_ai_enabled",
+        "label": "chat_ai_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "chat_ai_trigger",
+        "label": "chat_ai_trigger",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_api_key",
+        "label": "chat_api_key",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_base_url",
+        "label": "chat_base_url",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_model",
+        "label": "chat_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_prompt",
+        "label": "chat_prompt",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_room_id",
+        "label": "chat_room_id",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_room_ranking_enabled",
+        "label": "chat_room_ranking_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "chat_room_summary_enabled",
+        "label": "chat_room_summary_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "chat_room_summary_mode",
+        "label": "chat_room_summary_mode",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_room_summary_model",
+        "label": "chat_room_summary_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "config_id",
+        "label": "config_id",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "image_ai_enabled",
+        "label": "image_ai_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "image_ai_settings",
+        "label": "image_ai_settings",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "image_recognition_model",
+        "label": "image_recognition_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "knowledge_categories",
+        "label": "knowledge_categories",
+        "input": "body",
+        "type": "array",
+        "required": false
+      },
+      {
+        "key": "leave_chat_room_alert_enabled",
+        "label": "leave_chat_room_alert_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "leave_chat_room_alert_text",
+        "label": "leave_chat_room_alert_text",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "max_completion_tokens",
+        "label": "max_completion_tokens",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "memory_extraction_blacklist",
+        "label": "memory_extraction_blacklist",
+        "input": "body",
+        "type": "array",
+        "required": false
+      },
+      {
+        "key": "morning_enabled",
+        "label": "morning_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "news_enabled",
+        "label": "news_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "news_type",
+        "label": "news_type",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "pat_enabled",
+        "label": "pat_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "pat_text",
+        "label": "pat_text",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "pat_type",
+        "label": "pat_type",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "pat_voice_timbre",
+        "label": "pat_voice_timbre",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "podcast_config",
+        "label": "podcast_config",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "podcast_enabled",
+        "label": "podcast_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "short_video_parsing_enabled",
+        "label": "short_video_parsing_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "tts_enabled",
+        "label": "tts_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "tts_model",
+        "label": "tts_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "tts_settings",
+        "label": "tts_settings",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "welcome_emoji_len",
+        "label": "welcome_emoji_len",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "welcome_emoji_md5",
+        "label": "welcome_emoji_md5",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "welcome_enabled",
+        "label": "welcome_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "welcome_image_url",
+        "label": "welcome_image_url",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "welcome_text",
+        "label": "welcome_text",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "welcome_type",
+        "label": "welcome_type",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "welcome_url",
+        "label": "welcome_url",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "wxhb_notify_enabled",
+        "label": "wxhb_notify_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "wxhb_notify_member_list",
+        "label": "wxhb_notify_member_list",
+        "input": "body",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "post-chat-room--announcement",
+    "module": "群管理",
+    "label": "设置群公告",
+    "method": "POST",
+    "path": "/chat-room/announcement",
+    "fields": [
+      {
+        "key": "chat_room_id",
+        "label": "chat_room_id",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "content",
+        "label": "content",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-chat-room--create",
+    "module": "群管理",
+    "label": "创建群聊",
+    "method": "POST",
+    "path": "/chat-room/create",
+    "fields": [
+      {
+        "key": "contact_ids",
+        "label": "contact_ids",
+        "input": "body",
+        "type": "array",
+        "required": true
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-chat-room--invite",
+    "module": "群管理",
+    "label": "邀请群成员",
+    "method": "POST",
+    "path": "/chat-room/invite",
+    "fields": [
+      {
+        "key": "chat_room_id",
+        "label": "chat_room_id",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "contact_ids",
+        "label": "contact_ids",
+        "input": "body",
+        "type": "array",
+        "required": true
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-chat-room--join",
+    "module": "群管理",
+    "label": "同意入群邀请",
+    "method": "POST",
+    "path": "/chat-room/join",
+    "fields": [
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "system_message_id",
+        "label": "system_message_id",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "get-chat-room--member",
+    "module": "群管理",
+    "label": "获取群成员详情",
+    "method": "GET",
+    "path": "/chat-room/member",
+    "fields": [
+      {
+        "key": "chat_room_id",
+        "label": "群ID",
+        "input": "query",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "wechat_id",
+        "label": "成员微信ID",
+        "input": "query",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-chat-room--member",
+    "module": "群管理",
+    "label": "更新群成员配置",
+    "method": "POST",
+    "path": "/chat-room/member",
+    "fields": [
+      {
+        "key": "batch",
+        "label": "batch",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "chat_room_id",
+        "label": "chat_room_id",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "is_admin",
+        "label": "is_admin",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "is_blacklisted",
+        "label": "is_blacklisted",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "score",
+        "label": "score",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "score_action",
+        "label": "score_action",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "temporary_score",
+        "label": "temporary_score",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "temporary_score_action",
+        "label": "temporary_score_action",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "wechat_id",
+        "label": "wechat_id",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-chat-room--members",
+    "module": "群管理",
+    "label": "获取群成员列表",
+    "method": "GET",
+    "path": "/chat-room/members",
+    "fields": [
+      {
+        "key": "chat_room_id",
+        "label": "群ID",
+        "input": "query",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "keyword",
+        "label": "关键词",
+        "input": "query",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "page_index",
+        "label": "页码",
+        "input": "query",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "page_size",
+        "label": "每页数量",
+        "input": "query",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "delete-chat-room--members",
+    "module": "群管理",
+    "label": "删除群成员",
+    "method": "DELETE",
+    "path": "/chat-room/members",
+    "fields": [
+      {
+        "key": "chat_room_id",
+        "label": "chat_room_id",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "member_ids",
+        "label": "member_ids",
+        "input": "body",
+        "type": "array",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-chat-room--members--sync",
+    "module": "群管理",
+    "label": "同步群成员",
+    "method": "POST",
+    "path": "/chat-room/members/sync",
+    "fields": [
+      {
+        "key": "chat_room_id",
+        "label": "chat_room_id",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-chat-room--name",
+    "module": "群管理",
+    "label": "设置群名称",
+    "method": "POST",
+    "path": "/chat-room/name",
+    "fields": [
+      {
+        "key": "chat_room_id",
+        "label": "chat_room_id",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "content",
+        "label": "content",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-chat-room--not-left-members",
+    "module": "群管理",
+    "label": "获取未退群成员列表",
+    "method": "GET",
+    "path": "/chat-room/not-left-members",
+    "fields": [
+      {
+        "key": "chat_room_id",
+        "label": "群ID",
+        "input": "query",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "keyword",
+        "label": "关键词",
+        "input": "query",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "delete-chat-room--quit",
+    "module": "群管理",
+    "label": "退出群聊",
+    "method": "DELETE",
+    "path": "/chat-room/quit",
+    "fields": [
+      {
+        "key": "chat_room_id",
+        "label": "chat_room_id",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-chat-room--remark",
+    "module": "群管理",
+    "label": "设置群备注",
+    "method": "POST",
+    "path": "/chat-room/remark",
+    "fields": [
+      {
+        "key": "chat_room_id",
+        "label": "chat_room_id",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "content",
+        "label": "content",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-chat--file--download",
+    "module": "聊天记录",
+    "label": "下载聊天文件",
+    "method": "GET",
+    "path": "/chat/file/download",
+    "fields": [
+      {
+        "key": "message_id",
+        "label": "消息ID",
+        "input": "query",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "attach_url",
+        "label": "附件地址",
+        "input": "query",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "download": true
+  },
+  {
+    "id": "get-chat--history",
+    "module": "聊天记录",
+    "label": "获取聊天记录",
+    "method": "GET",
+    "path": "/chat/history",
+    "fields": [
+      {
+        "key": "contact_id",
+        "label": "联系人ID",
+        "input": "query",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "keyword",
+        "label": "关键词",
+        "input": "query",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_room_member",
+        "label": "群成员微信ID",
+        "input": "query",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "time_start",
+        "label": "开始时间",
+        "input": "query",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "time_end",
+        "label": "结束时间",
+        "input": "query",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "page_index",
+        "label": "页码",
+        "input": "query",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "page_size",
+        "label": "每页数量",
+        "input": "query",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "get-chat--image--download",
+    "module": "聊天记录",
+    "label": "下载聊天图片",
+    "method": "GET",
+    "path": "/chat/image/download",
+    "fields": [
+      {
+        "key": "message_id",
+        "label": "消息ID",
+        "input": "query",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "attach_url",
+        "label": "附件地址",
+        "input": "query",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "download": true
+  },
+  {
+    "id": "get-chat--video--download",
+    "module": "聊天记录",
+    "label": "下载聊天视频",
+    "method": "GET",
+    "path": "/chat/video/download",
+    "fields": [
+      {
+        "key": "message_id",
+        "label": "消息ID",
+        "input": "query",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "attach_url",
+        "label": "附件地址",
+        "input": "query",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "download": true
+  },
+  {
+    "id": "get-chat--voice--download",
+    "module": "聊天记录",
+    "label": "下载聊天语音",
+    "method": "GET",
+    "path": "/chat/voice/download",
+    "fields": [
+      {
+        "key": "message_id",
+        "label": "消息ID",
+        "input": "query",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "attach_url",
+        "label": "附件地址",
+        "input": "query",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "download": true
+  },
+  {
+    "id": "delete-contact--friend",
+    "module": "好友",
+    "label": "删除好友",
+    "method": "DELETE",
+    "path": "/contact/friend",
+    "fields": [
+      {
+        "key": "contact_id",
+        "label": "contact_id",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-contact--friend--add",
+    "module": "好友",
+    "label": "发送好友申请",
+    "method": "POST",
+    "path": "/contact/friend/add",
+    "fields": [
+      {
+        "key": "Opcode",
+        "label": "Opcode",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "Scene",
+        "label": "Scene",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "V1",
+        "label": "V1",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "V2",
+        "label": "V2",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "verify_content",
+        "label": "verify_content",
+        "input": "body",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "post-contact--friend--add-from-chat-room",
+    "module": "好友",
+    "label": "从群成员发送好友申请",
+    "method": "POST",
+    "path": "/contact/friend/add-from-chat-room",
+    "fields": [
+      {
+        "key": "chat_room_member_id",
+        "label": "chat_room_member_id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "verify_content",
+        "label": "verify_content",
+        "input": "body",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "post-contact--friend--pass-verify",
+    "module": "好友",
+    "label": "通过好友验证",
+    "method": "POST",
+    "path": "/contact/friend/pass-verify",
+    "fields": [
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "system_message_id",
+        "label": "system_message_id",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "post-contact--friend--remark",
+    "module": "好友",
+    "label": "设置好友备注",
+    "method": "POST",
+    "path": "/contact/friend/remark",
+    "fields": [
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "remarks",
+        "label": "remarks",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "to_wxid",
+        "label": "to_wxid",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-contact--friend--search",
+    "module": "好友",
+    "label": "搜索好友",
+    "method": "POST",
+    "path": "/contact/friend/search",
+    "fields": [
+      {
+        "key": "from_scene",
+        "label": "from_scene",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "search_scene",
+        "label": "search_scene",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "to_username",
+        "label": "to_username",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-contact--list",
+    "module": "好友",
+    "label": "获取联系人列表",
+    "method": "GET",
+    "path": "/contact/list",
+    "fields": [
+      {
+        "key": "contact_ids",
+        "label": "联系人ID列表",
+        "input": "query",
+        "type": "array",
+        "required": false
+      },
+      {
+        "key": "type",
+        "label": "联系人类型",
+        "input": "query",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "keyword",
+        "label": "关键词",
+        "input": "query",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "page_index",
+        "label": "页码",
+        "input": "query",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "page_size",
+        "label": "每页数量",
+        "input": "query",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "post-contact--sync",
+    "module": "好友",
+    "label": "同步联系人",
+    "method": "POST",
+    "path": "/contact/sync",
+    "fields": [
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "get-friend-settings",
+    "module": "好友设置",
+    "label": "获取好友设置",
+    "method": "GET",
+    "path": "/friend-settings",
+    "fields": [
+      {
+        "key": "contact_id",
+        "label": "联系人业务ID",
+        "input": "query",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-friend-settings",
+    "module": "好友设置",
+    "label": "保存好友设置",
+    "method": "POST",
+    "path": "/friend-settings",
+    "fields": [
+      {
+        "key": "chat_ai_enabled",
+        "label": "chat_ai_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "chat_api_key",
+        "label": "chat_api_key",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_base_url",
+        "label": "chat_base_url",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_model",
+        "label": "chat_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_prompt",
+        "label": "chat_prompt",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "config_id",
+        "label": "config_id",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "image_ai_enabled",
+        "label": "image_ai_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "image_ai_settings",
+        "label": "image_ai_settings",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "image_recognition_model",
+        "label": "image_recognition_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "max_completion_tokens",
+        "label": "max_completion_tokens",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "tts_enabled",
+        "label": "tts_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "tts_model",
+        "label": "tts_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "tts_settings",
+        "label": "tts_settings",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "wechat_id",
+        "label": "wechat_id",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-global-settings",
+    "module": "插件与全局设置",
+    "label": "获取全局设置",
+    "method": "GET",
+    "path": "/global-settings",
+    "fields": []
+  },
+  {
+    "id": "post-global-settings",
+    "module": "插件与全局设置",
+    "label": "保存全局设置",
+    "method": "POST",
+    "path": "/global-settings",
+    "fields": [
+      {
+        "key": "chat_ai_enabled",
+        "label": "chat_ai_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "chat_ai_trigger",
+        "label": "chat_ai_trigger",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_api_key",
+        "label": "chat_api_key",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_base_url",
+        "label": "chat_base_url",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_model",
+        "label": "chat_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_prompt",
+        "label": "chat_prompt",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_room_ranking_daily_cron",
+        "label": "chat_room_ranking_daily_cron",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_room_ranking_enabled",
+        "label": "chat_room_ranking_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "chat_room_ranking_month_cron",
+        "label": "chat_room_ranking_month_cron",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_room_ranking_weekly_cron",
+        "label": "chat_room_ranking_weekly_cron",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_room_summary_cron",
+        "label": "chat_room_summary_cron",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_room_summary_enabled",
+        "label": "chat_room_summary_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "chat_room_summary_mode",
+        "label": "chat_room_summary_mode",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "chat_room_summary_model",
+        "label": "chat_room_summary_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "friend_sync_cron",
+        "label": "friend_sync_cron",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "image_ai_enabled",
+        "label": "image_ai_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "image_ai_settings",
+        "label": "image_ai_settings",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "image_embedding_api_key",
+        "label": "image_embedding_api_key",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "image_embedding_base_url",
+        "label": "image_embedding_base_url",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "image_embedding_dimension",
+        "label": "image_embedding_dimension",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "image_embedding_model",
+        "label": "image_embedding_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "image_recognition_model",
+        "label": "image_recognition_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "leave_chat_room_alert_enabled",
+        "label": "leave_chat_room_alert_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "leave_chat_room_alert_text",
+        "label": "leave_chat_room_alert_text",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "max_completion_tokens",
+        "label": "max_completion_tokens",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "memory_enabled",
+        "label": "memory_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "morning_cron",
+        "label": "morning_cron",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "morning_enabled",
+        "label": "morning_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "news_cron",
+        "label": "news_cron",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "news_enabled",
+        "label": "news_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "news_type",
+        "label": "news_type",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "pat_enabled",
+        "label": "pat_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "pat_text",
+        "label": "pat_text",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "pat_type",
+        "label": "pat_type",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "pat_voice_timbre",
+        "label": "pat_voice_timbre",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "text_embedding_dimension",
+        "label": "text_embedding_dimension",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "text_embedding_model",
+        "label": "text_embedding_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "tts_enabled",
+        "label": "tts_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "tts_model",
+        "label": "tts_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "tts_settings",
+        "label": "tts_settings",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "welcome_emoji_len",
+        "label": "welcome_emoji_len",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "welcome_emoji_md5",
+        "label": "welcome_emoji_md5",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "welcome_enabled",
+        "label": "welcome_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "welcome_image_url",
+        "label": "welcome_image_url",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "welcome_text",
+        "label": "welcome_text",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "welcome_type",
+        "label": "welcome_type",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "welcome_url",
+        "label": "welcome_url",
+        "input": "body",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "get-image-knowledge--categories",
+    "module": "图片知识库",
+    "label": "获取图片知识分类",
+    "method": "GET",
+    "path": "/image-knowledge/categories",
+    "fields": []
+  },
+  {
+    "id": "post-image-knowledge--document",
+    "module": "图片知识库",
+    "label": "新增图片知识文档",
+    "method": "POST",
+    "path": "/image-knowledge/document",
+    "fields": [
+      {
+        "key": "category",
+        "label": "category",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "description",
+        "label": "description",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "image_url",
+        "label": "image_url",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "title",
+        "label": "title",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "delete-image-knowledge--document",
+    "module": "图片知识库",
+    "label": "删除图片知识文档",
+    "method": "DELETE",
+    "path": "/image-knowledge/document",
+    "fields": [
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "title",
+        "label": "title",
+        "input": "body",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "get-image-knowledge--documents",
+    "module": "图片知识库",
+    "label": "获取图片知识文档列表",
+    "method": "GET",
+    "path": "/image-knowledge/documents",
+    "fields": [
+      {
+        "key": "category",
+        "label": "分类",
+        "input": "query",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "page_index",
+        "label": "页码",
+        "input": "query",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "page_size",
+        "label": "每页数量",
+        "input": "query",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "post-image-knowledge--reindex",
+    "module": "图片知识库",
+    "label": "重建图片知识库索引",
+    "method": "POST",
+    "path": "/image-knowledge/reindex",
+    "fields": []
+  },
+  {
+    "id": "post-image-knowledge--search--image",
+    "module": "图片知识库",
+    "label": "按图片搜索图片知识",
+    "method": "POST",
+    "path": "/image-knowledge/search/image",
+    "fields": [
+      {
+        "key": "category",
+        "label": "category",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "image_url",
+        "label": "image_url",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "limit",
+        "label": "limit",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "post-image-knowledge--search--text",
+    "module": "图片知识库",
+    "label": "按文本搜索图片知识",
+    "method": "POST",
+    "path": "/image-knowledge/search/text",
+    "fields": [
+      {
+        "key": "category",
+        "label": "category",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "limit",
+        "label": "limit",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "query",
+        "label": "query",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-knowledge--categories",
+    "module": "文本知识库",
+    "label": "获取知识分类",
+    "method": "GET",
+    "path": "/knowledge/categories",
+    "fields": [
+      {
+        "key": "type",
+        "label": "分类类型 text/image",
+        "input": "query",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "put-knowledge--category",
+    "module": "文本知识库",
+    "label": "更新知识分类",
+    "method": "PUT",
+    "path": "/knowledge/category",
+    "fields": [
+      {
+        "key": "description",
+        "label": "description",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "name",
+        "label": "name",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-knowledge--category",
+    "module": "文本知识库",
+    "label": "创建知识分类",
+    "method": "POST",
+    "path": "/knowledge/category",
+    "fields": [
+      {
+        "key": "code",
+        "label": "code",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "description",
+        "label": "description",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "name",
+        "label": "name",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "type",
+        "label": "type",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "delete-knowledge--category",
+    "module": "文本知识库",
+    "label": "删除知识分类",
+    "method": "DELETE",
+    "path": "/knowledge/category",
+    "fields": [
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "put-knowledge--document",
+    "module": "文本知识库",
+    "label": "更新知识文档",
+    "method": "PUT",
+    "path": "/knowledge/document",
+    "fields": [
+      {
+        "key": "content",
+        "label": "content",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "source",
+        "label": "source",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "title",
+        "label": "title",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-knowledge--document",
+    "module": "文本知识库",
+    "label": "新增知识文档",
+    "method": "POST",
+    "path": "/knowledge/document",
+    "fields": [
+      {
+        "key": "category",
+        "label": "category",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "content",
+        "label": "content",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "source",
+        "label": "source",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "title",
+        "label": "title",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "delete-knowledge--document",
+    "module": "文本知识库",
+    "label": "删除知识文档",
+    "method": "DELETE",
+    "path": "/knowledge/document",
+    "fields": [
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "title",
+        "label": "title",
+        "input": "body",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "post-knowledge--document--disable",
+    "module": "文本知识库",
+    "label": "禁用知识文档",
+    "method": "POST",
+    "path": "/knowledge/document/disable",
+    "fields": [
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-knowledge--document--enable",
+    "module": "文本知识库",
+    "label": "启用知识文档",
+    "method": "POST",
+    "path": "/knowledge/document/enable",
+    "fields": [
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-knowledge--documents",
+    "module": "文本知识库",
+    "label": "获取知识文档列表",
+    "method": "GET",
+    "path": "/knowledge/documents",
+    "fields": [
+      {
+        "key": "category",
+        "label": "分类",
+        "input": "query",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "page_index",
+        "label": "页码",
+        "input": "query",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "page_size",
+        "label": "每页数量",
+        "input": "query",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "post-knowledge--reindex",
+    "module": "文本知识库",
+    "label": "重建文本知识库索引",
+    "method": "POST",
+    "path": "/knowledge/reindex",
+    "fields": []
+  },
+  {
+    "id": "post-knowledge--search",
+    "module": "文本知识库",
+    "label": "搜索知识库",
+    "method": "POST",
+    "path": "/knowledge/search",
+    "fields": [
+      {
+        "key": "category",
+        "label": "category",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "limit",
+        "label": "limit",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "query",
+        "label": "query",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-mcp-server",
+    "module": "MCP",
+    "label": "获取 MCP 服务详情",
+    "method": "GET",
+    "path": "/mcp-server",
+    "fields": [
+      {
+        "key": "mcp_server_id",
+        "label": "MCP 服务ID",
+        "input": "query",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "put-mcp-server",
+    "module": "MCP",
+    "label": "更新 MCP 服务",
+    "method": "PUT",
+    "path": "/mcp-server",
+    "fields": [
+      {
+        "key": "args",
+        "label": "[]string",
+        "input": "body",
+        "type": "array",
+        "required": false
+      },
+      {
+        "key": "auth_password",
+        "label": "auth_password",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "auth_token",
+        "label": "auth_token",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "auth_type",
+        "label": "auth_type",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "auth_username",
+        "label": "auth_username",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "capabilities",
+        "label": "高级配置",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "command",
+        "label": "Stdio模式配置（命令行模式）",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "connect_timeout",
+        "label": "超时和重连配置",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "connection_count",
+        "label": "connection_count",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "created_at",
+        "label": "时间戳",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "custom_config",
+        "label": "其他自定义配置",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "deleted_at",
+        "label": "deleted_at",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "description",
+        "label": "description",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "enabled",
+        "label": "enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "env",
+        "label": "map[string]string",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "error_count",
+        "label": "error_count",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "headers",
+        "label": "map[string]string",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "heartbeat_enable",
+        "label": "heartbeat_enable",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "heartbeat_interval",
+        "label": "heartbeat_interval",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "is_built_in",
+        "label": "is_built_in",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "last_connected_at",
+        "label": "状态追踪",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "last_error",
+        "label": "last_error",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "max_retries",
+        "label": "max_retries",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "name",
+        "label": "name",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "priority",
+        "label": "priority",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "read_timeout",
+        "label": "read_timeout",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "retry_interval",
+        "label": "retry_interval",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "tags",
+        "label": "[]string，用于分类和过滤",
+        "input": "body",
+        "type": "array",
+        "required": false
+      },
+      {
+        "key": "tls_skip_verify",
+        "label": "tls_skip_verify",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "transport",
+        "label": "transport",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "updated_at",
+        "label": "updated_at",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "url",
+        "label": "网络模式配置（SSE/HTTP/WS共用）",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "working_dir",
+        "label": "working_dir",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "write_timeout",
+        "label": "write_timeout",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "post-mcp-server",
+    "module": "MCP",
+    "label": "创建 MCP 服务",
+    "method": "POST",
+    "path": "/mcp-server",
+    "fields": [
+      {
+        "key": "args",
+        "label": "[]string",
+        "input": "body",
+        "type": "array",
+        "required": false
+      },
+      {
+        "key": "auth_password",
+        "label": "auth_password",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "auth_token",
+        "label": "auth_token",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "auth_type",
+        "label": "auth_type",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "auth_username",
+        "label": "auth_username",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "capabilities",
+        "label": "高级配置",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "command",
+        "label": "Stdio模式配置（命令行模式）",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "connect_timeout",
+        "label": "超时和重连配置",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "connection_count",
+        "label": "connection_count",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "created_at",
+        "label": "时间戳",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "custom_config",
+        "label": "其他自定义配置",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "deleted_at",
+        "label": "deleted_at",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "description",
+        "label": "description",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "enabled",
+        "label": "enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "env",
+        "label": "map[string]string",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "error_count",
+        "label": "error_count",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "headers",
+        "label": "map[string]string",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "heartbeat_enable",
+        "label": "heartbeat_enable",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "heartbeat_interval",
+        "label": "heartbeat_interval",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "is_built_in",
+        "label": "is_built_in",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "last_connected_at",
+        "label": "状态追踪",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "last_error",
+        "label": "last_error",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "max_retries",
+        "label": "max_retries",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "name",
+        "label": "name",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "priority",
+        "label": "priority",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "read_timeout",
+        "label": "read_timeout",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "retry_interval",
+        "label": "retry_interval",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "tags",
+        "label": "[]string，用于分类和过滤",
+        "input": "body",
+        "type": "array",
+        "required": false
+      },
+      {
+        "key": "tls_skip_verify",
+        "label": "tls_skip_verify",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "transport",
+        "label": "transport",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "updated_at",
+        "label": "updated_at",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "url",
+        "label": "网络模式配置（SSE/HTTP/WS共用）",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "working_dir",
+        "label": "working_dir",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "write_timeout",
+        "label": "write_timeout",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "delete-mcp-server",
+    "module": "MCP",
+    "label": "删除 MCP 服务",
+    "method": "DELETE",
+    "path": "/mcp-server",
+    "fields": [
+      {
+        "key": "args",
+        "label": "[]string",
+        "input": "body",
+        "type": "array",
+        "required": false
+      },
+      {
+        "key": "auth_password",
+        "label": "auth_password",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "auth_token",
+        "label": "auth_token",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "auth_type",
+        "label": "auth_type",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "auth_username",
+        "label": "auth_username",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "capabilities",
+        "label": "高级配置",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "command",
+        "label": "Stdio模式配置（命令行模式）",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "connect_timeout",
+        "label": "超时和重连配置",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "connection_count",
+        "label": "connection_count",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "created_at",
+        "label": "时间戳",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "custom_config",
+        "label": "其他自定义配置",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "deleted_at",
+        "label": "deleted_at",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "description",
+        "label": "description",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "enabled",
+        "label": "enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "env",
+        "label": "map[string]string",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "error_count",
+        "label": "error_count",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "headers",
+        "label": "map[string]string",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "heartbeat_enable",
+        "label": "heartbeat_enable",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "heartbeat_interval",
+        "label": "heartbeat_interval",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "is_built_in",
+        "label": "is_built_in",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "last_connected_at",
+        "label": "状态追踪",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "last_error",
+        "label": "last_error",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "max_retries",
+        "label": "max_retries",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "name",
+        "label": "name",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "priority",
+        "label": "priority",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "read_timeout",
+        "label": "read_timeout",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "retry_interval",
+        "label": "retry_interval",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "tags",
+        "label": "[]string，用于分类和过滤",
+        "input": "body",
+        "type": "array",
+        "required": false
+      },
+      {
+        "key": "tls_skip_verify",
+        "label": "tls_skip_verify",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "transport",
+        "label": "transport",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "updated_at",
+        "label": "updated_at",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "url",
+        "label": "网络模式配置（SSE/HTTP/WS共用）",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "working_dir",
+        "label": "working_dir",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "write_timeout",
+        "label": "write_timeout",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "post-mcp-server--disable",
+    "module": "MCP",
+    "label": "禁用 MCP 服务",
+    "method": "POST",
+    "path": "/mcp-server/disable",
+    "fields": [
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-mcp-server--enable",
+    "module": "MCP",
+    "label": "启用 MCP 服务",
+    "method": "POST",
+    "path": "/mcp-server/enable",
+    "fields": [
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-mcp-server--list",
+    "module": "MCP",
+    "label": "获取 MCP 服务列表",
+    "method": "GET",
+    "path": "/mcp-server/list",
+    "fields": []
+  },
+  {
+    "id": "get-mcp-server--tools",
+    "module": "MCP",
+    "label": "获取 MCP 服务工具列表",
+    "method": "GET",
+    "path": "/mcp-server/tools",
+    "fields": [
+      {
+        "key": "mcp_server_id",
+        "label": "MCP 服务ID",
+        "input": "query",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-memory",
+    "module": "记忆",
+    "label": "保存记忆",
+    "method": "POST",
+    "path": "/memory",
+    "fields": [
+      {
+        "key": "chat_room_id",
+        "label": "chat_room_id",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "contact_wxid",
+        "label": "contact_wxid",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "content",
+        "label": "content",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "importance",
+        "label": "importance",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "key",
+        "label": "key",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "type",
+        "label": "type",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "delete-memory",
+    "module": "记忆",
+    "label": "删除记忆",
+    "method": "DELETE",
+    "path": "/memory",
+    "fields": [
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-memory--search",
+    "module": "记忆",
+    "label": "搜索记忆",
+    "method": "POST",
+    "path": "/memory/search",
+    "fields": [
+      {
+        "key": "contact_wxid",
+        "label": "contact_wxid",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "limit",
+        "label": "limit",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "query",
+        "label": "query",
+        "input": "body",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "post-message--revoke",
+    "module": "消息收发",
+    "label": "撤回消息",
+    "method": "POST",
+    "path": "/message/revoke",
+    "fields": [
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "message_id",
+        "label": "message_id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-message--send--ai--tts",
+    "module": "消息收发",
+    "label": "发送 AI 语音消息",
+    "method": "POST",
+    "path": "/message/send/ai/tts",
+    "fields": [
+      {
+        "key": "content",
+        "label": "content",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "speaker",
+        "label": "speaker",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "to_wxid",
+        "label": "to_wxid",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-message--send--file",
+    "module": "消息收发",
+    "label": "发送文件分片",
+    "method": "POST",
+    "path": "/message/send/file",
+    "fields": [
+      {
+        "key": "to_wxid",
+        "label": "接收方微信ID",
+        "input": "formData",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "client_app_data_id",
+        "label": "客户端文件ID",
+        "input": "formData",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "filename",
+        "label": "文件名",
+        "input": "formData",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "file_hash",
+        "label": "文件哈希",
+        "input": "formData",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "file_size",
+        "label": "文件大小",
+        "input": "formData",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "chunk_index",
+        "label": "分片序号",
+        "input": "formData",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "total_chunks",
+        "label": "分片总数",
+        "input": "formData",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "chunk",
+        "label": "文件分片",
+        "input": "formData",
+        "type": "file",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-message--send--image",
+    "module": "消息收发",
+    "label": "发送图片消息",
+    "method": "POST",
+    "path": "/message/send/image",
+    "fields": [
+      {
+        "key": "to_wxid",
+        "label": "接收方微信ID",
+        "input": "formData",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "image",
+        "label": "图片文件",
+        "input": "formData",
+        "type": "file",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-message--send--longtext",
+    "module": "消息收发",
+    "label": "发送长文本消息",
+    "method": "POST",
+    "path": "/message/send/longtext",
+    "fields": [
+      {
+        "key": "content",
+        "label": "content",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "to_wxid",
+        "label": "to_wxid",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-message--send--text",
+    "module": "消息收发",
+    "label": "发送文本消息",
+    "method": "POST",
+    "path": "/message/send/text",
+    "fields": [
+      {
+        "key": "at",
+        "label": "at",
+        "input": "body",
+        "type": "array",
+        "required": false
+      },
+      {
+        "key": "content",
+        "label": "content",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "to_wxid",
+        "label": "to_wxid",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-message--send--video",
+    "module": "消息收发",
+    "label": "发送视频消息",
+    "method": "POST",
+    "path": "/message/send/video",
+    "fields": [
+      {
+        "key": "to_wxid",
+        "label": "接收方微信ID",
+        "input": "formData",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "video",
+        "label": "视频文件",
+        "input": "formData",
+        "type": "file",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-message--send--voice",
+    "module": "消息收发",
+    "label": "发送语音消息",
+    "method": "POST",
+    "path": "/message/send/voice",
+    "fields": [
+      {
+        "key": "to_wxid",
+        "label": "接收方微信ID",
+        "input": "formData",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "voice",
+        "label": "语音文件",
+        "input": "formData",
+        "type": "file",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-message--timbre",
+    "module": "消息收发",
+    "label": "获取语音音色列表",
+    "method": "GET",
+    "path": "/message/timbre",
+    "fields": []
+  },
+  {
+    "id": "post-moments--comment",
+    "module": "朋友圈",
+    "label": "评论朋友圈",
+    "method": "POST",
+    "path": "/moments/comment",
+    "fields": [
+      {
+        "key": "Content",
+        "label": "Content",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "MomentId",
+        "label": "MomentId",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "ReplyCommnetId",
+        "label": "ReplyCommnetId",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "Type",
+        "label": "Type",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-moments--down-media",
+    "module": "朋友圈",
+    "label": "下载朋友圈媒体",
+    "method": "GET",
+    "path": "/moments/down-media",
+    "fields": [
+      {
+        "key": "url",
+        "label": "媒体 URL",
+        "input": "query",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "key",
+        "label": "媒体 Key",
+        "input": "query",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "download": true
+  },
+  {
+    "id": "get-moments--get-detail",
+    "module": "朋友圈",
+    "label": "获取朋友圈用户页详情",
+    "method": "GET",
+    "path": "/moments/get-detail",
+    "fields": [
+      {
+        "key": "Towxid",
+        "label": "目标微信ID",
+        "input": "query",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "Fristpagemd5",
+        "label": "首页 MD5",
+        "input": "query",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "Maxid",
+        "label": "最大朋友圈ID",
+        "input": "query",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "get-moments--get-id-detail",
+    "module": "朋友圈",
+    "label": "获取朋友圈单条详情",
+    "method": "GET",
+    "path": "/moments/get-id-detail",
+    "fields": [
+      {
+        "key": "Towxid",
+        "label": "目标微信ID",
+        "input": "query",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "MomentId",
+        "label": "朋友圈业务ID",
+        "input": "query",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-moments--list",
+    "module": "朋友圈",
+    "label": "获取朋友圈列表",
+    "method": "GET",
+    "path": "/moments/list",
+    "fields": [
+      {
+        "key": "frist_page_md5",
+        "label": "首页 MD5",
+        "input": "query",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "max_id",
+        "label": "最大朋友圈ID",
+        "input": "query",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-moments--operate",
+    "module": "朋友圈",
+    "label": "操作朋友圈",
+    "method": "POST",
+    "path": "/moments/operate",
+    "fields": [
+      {
+        "key": "CommentId",
+        "label": "CommentId",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "MomentID",
+        "label": "MomentID",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "Type",
+        "label": "Type",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-moments--post",
+    "module": "朋友圈",
+    "label": "发布朋友圈",
+    "method": "POST",
+    "path": "/moments/post",
+    "fields": [
+      {
+        "key": "content",
+        "label": "content",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "donot_share",
+        "label": "donot_share",
+        "input": "body",
+        "type": "array",
+        "required": false
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "media_list",
+        "label": "media_list",
+        "input": "body",
+        "type": "array",
+        "required": false
+      },
+      {
+        "key": "share_type",
+        "label": "share_type",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "share_with",
+        "label": "share_with",
+        "input": "body",
+        "type": "array",
+        "required": false
+      },
+      {
+        "key": "with_user_list",
+        "label": "with_user_list",
+        "input": "body",
+        "type": "array",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "post-moments--privacy-settings",
+    "module": "朋友圈",
+    "label": "设置朋友圈隐私",
+    "method": "POST",
+    "path": "/moments/privacy-settings",
+    "fields": [
+      {
+        "key": "Function",
+        "label": "Function",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "Value",
+        "label": "Value",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-moments--settings",
+    "module": "朋友圈",
+    "label": "获取朋友圈设置",
+    "method": "GET",
+    "path": "/moments/settings",
+    "fields": []
+  },
+  {
+    "id": "post-moments--settings",
+    "module": "朋友圈",
+    "label": "保存朋友圈设置",
+    "method": "POST",
+    "path": "/moments/settings",
+    "fields": [
+      {
+        "key": "ai_api_key",
+        "label": "ai_api_key",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "ai_base_url",
+        "label": "ai_base_url",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "auto_comment",
+        "label": "auto_comment",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "auto_like",
+        "label": "auto_like",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "blacklist",
+        "label": "blacklist",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "comment_model",
+        "label": "comment_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "comment_prompt",
+        "label": "comment_prompt",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "image_understanding_model",
+        "label": "image_understanding_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "max_completion_tokens",
+        "label": "max_completion_tokens",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "sync_interval",
+        "label": "sync_interval",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "video_understanding_model",
+        "label": "video_understanding_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "whitelist",
+        "label": "whitelist",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "workflow_model",
+        "label": "workflow_model",
+        "input": "body",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "post-moments--upload-media",
+    "module": "朋友圈",
+    "label": "上传朋友圈媒体",
+    "method": "POST",
+    "path": "/moments/upload-media",
+    "fields": [
+      {
+        "key": "media",
+        "label": "图片或视频文件",
+        "input": "formData",
+        "type": "file",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-oss-settings",
+    "module": "对象存储",
+    "label": "获取 OSS 设置",
+    "method": "GET",
+    "path": "/oss-settings",
+    "fields": []
+  },
+  {
+    "id": "test-oss-settings",
+    "module": "对象存储",
+    "label": "测试已保存的存储桶连接",
+    "method": "POST",
+    "path": "/oss-settings/test",
+    "fields": []
+  },
+  {
+    "id": "post-oss-settings",
+    "module": "对象存储",
+    "label": "保存 OSS 设置",
+    "method": "POST",
+    "path": "/oss-settings",
+    "fields": [
+      {
+        "key": "aliyun_oss_settings",
+        "label": "aliyun_oss_settings",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "auto_upload_file",
+        "label": "auto_upload_file",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "auto_upload_file_mode",
+        "label": "auto_upload_file_mode",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "auto_upload_image",
+        "label": "auto_upload_image",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "auto_upload_image_mode",
+        "label": "auto_upload_image_mode",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "auto_upload_video",
+        "label": "auto_upload_video",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "auto_upload_video_mode",
+        "label": "auto_upload_video_mode",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "auto_upload_voice",
+        "label": "auto_upload_voice",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "auto_upload_voice_mode",
+        "label": "auto_upload_voice_mode",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "cloudflare_r2_settings",
+        "label": "cloudflare_r2_settings",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "oss_provider",
+        "label": "oss_provider",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "tencent_cloud_oss_settings",
+        "label": "tencent_cloud_oss_settings",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "volcengine_tos_settings",
+        "label": "volcengine_tos_settings",
+        "input": "body",
+        "type": "object",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "get-skills",
+    "module": "Skills",
+    "label": "获取技能列表",
+    "method": "GET",
+    "path": "/skills",
+    "fields": []
+  },
+  {
+    "id": "post-skills--disable",
+    "module": "Skills",
+    "label": "禁用技能",
+    "method": "POST",
+    "path": "/skills/disable",
+    "fields": [
+      {
+        "key": "name",
+        "label": "name",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-skills--enable",
+    "module": "Skills",
+    "label": "启用技能",
+    "method": "POST",
+    "path": "/skills/enable",
+    "fields": [
+      {
+        "key": "name",
+        "label": "name",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-skills--envs",
+    "module": "Skills",
+    "label": "设置技能环境变量",
+    "method": "POST",
+    "path": "/skills/envs",
+    "fields": [
+      {
+        "key": "env_vars",
+        "label": "env_vars",
+        "input": "body",
+        "type": "array",
+        "required": false
+      },
+      {
+        "key": "name",
+        "label": "name",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-skills--install",
+    "module": "Skills",
+    "label": "安装技能",
+    "method": "POST",
+    "path": "/skills/install",
+    "fields": [
+      {
+        "key": "ref",
+        "label": "ref",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "repo_url",
+        "label": "或者分别指定",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "sub_path",
+        "label": "sub_path",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "url",
+        "label": "GitHub URL（完整路径，如 https://github.com/anthropics/skills/tree/main/skills/pptx）",
+        "input": "body",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "delete-skills--uninstall",
+    "module": "Skills",
+    "label": "卸载技能",
+    "method": "DELETE",
+    "path": "/skills/uninstall",
+    "fields": [
+      {
+        "key": "name",
+        "label": "name",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "put-skills--update",
+    "module": "Skills",
+    "label": "更新技能",
+    "method": "PUT",
+    "path": "/skills/update",
+    "fields": [
+      {
+        "key": "name",
+        "label": "name",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-system-messages",
+    "module": "系统消息",
+    "label": "获取近一个月系统消息",
+    "method": "GET",
+    "path": "/system-messages",
+    "fields": []
+  },
+  {
+    "id": "post-system-messages--mark-as-read",
+    "module": "系统消息",
+    "label": "批量标记系统消息已读",
+    "method": "POST",
+    "path": "/system-messages/mark-as-read",
+    "fields": [
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "system_message_ids",
+        "label": "system_message_ids",
+        "input": "body",
+        "type": "array",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-system-prompts",
+    "module": "系统提示词",
+    "label": "获取系统提示词列表",
+    "method": "GET",
+    "path": "/system-prompts",
+    "fields": [
+      {
+        "key": "keyword",
+        "label": "关键词",
+        "input": "query",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "put-system-prompts",
+    "module": "系统提示词",
+    "label": "更新系统提示词",
+    "method": "PUT",
+    "path": "/system-prompts",
+    "fields": [
+      {
+        "key": "content",
+        "label": "content",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      },
+      {
+        "key": "title",
+        "label": "title",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-system-prompts",
+    "module": "系统提示词",
+    "label": "创建系统提示词",
+    "method": "POST",
+    "path": "/system-prompts",
+    "fields": [
+      {
+        "key": "content",
+        "label": "content",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "title",
+        "label": "title",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "delete-system-prompts",
+    "module": "系统提示词",
+    "label": "删除系统提示词",
+    "method": "DELETE",
+    "path": "/system-prompts",
+    "fields": [
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-system-prompts--detail",
+    "module": "系统提示词",
+    "label": "获取系统提示词详情",
+    "method": "GET",
+    "path": "/system-prompts/detail",
+    "fields": [
+      {
+        "key": "prompt_id",
+        "label": "系统提示词业务ID",
+        "input": "query",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-system-settings",
+    "module": "机器人设置",
+    "label": "获取系统设置",
+    "method": "GET",
+    "path": "/system-settings",
+    "fields": []
+  },
+  {
+    "id": "post-system-settings",
+    "module": "机器人设置",
+    "label": "保存系统设置",
+    "method": "POST",
+    "path": "/system-settings",
+    "fields": [
+      {
+        "key": "api_token_enabled",
+        "label": "api_token_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "auto_chatroom_invite",
+        "label": "auto_chatroom_invite",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "auto_verify_user",
+        "label": "auto_verify_user",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "id",
+        "label": "id",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "notification_type",
+        "label": "notification_type",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "offline_notification_enabled",
+        "label": "offline_notification_enabled",
+        "input": "body",
+        "type": "boolean",
+        "required": false
+      },
+      {
+        "key": "push_plus_token",
+        "label": "push_plus_token",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "push_plus_url",
+        "label": "push_plus_url",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "system_settings_id",
+        "label": "system_settings_id",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "verify_user_delay",
+        "label": "verify_user_delay",
+        "input": "body",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "webhook_headers",
+        "label": "webhook_headers",
+        "input": "body",
+        "type": "object",
+        "required": false
+      },
+      {
+        "key": "webhook_url",
+        "label": "webhook_url",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "wecom_agent_id",
+        "label": "wecom_agent_id",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "wecom_corp_id",
+        "label": "wecom_corp_id",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "wecom_proxy_url",
+        "label": "wecom_proxy_url",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "wecom_secret",
+        "label": "wecom_secret",
+        "input": "body",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "wecom_to_user",
+        "label": "wecom_to_user",
+        "input": "body",
+        "type": "string",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "get-system--robot-container-logs",
+    "module": "容器状态与日志",
+    "label": "获取机器人容器日志",
+    "method": "GET",
+    "path": "/system/robot-container-logs",
+    "fields": []
+  },
+  {
+    "id": "get-system--robot-container-stats",
+    "module": "容器状态与日志",
+    "label": "获取机器人容器资源统计",
+    "method": "GET",
+    "path": "/system/robot-container-stats",
+    "fields": []
+  },
+  {
+    "id": "post-vector--reindex-all",
+    "module": "向量索引",
+    "label": "重建全部向量索引",
+    "method": "POST",
+    "path": "/vector/reindex-all",
+    "fields": []
+  },
+  {
+    "id": "get-robot-state",
+    "module": "机器人维护",
+    "label": "读取协议端状态",
+    "method": "GET",
+    "path": "/robot/state",
+    "fields": []
+  },
+  {
+    "id": "put-robot-update",
+    "module": "机器人维护",
+    "label": "修改实例名称或代理",
+    "method": "PUT",
+    "path": "/robot/update",
+    "fields": [
+      {
+        "key": "robot_name",
+        "label": "机器人名称",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "proxy",
+        "label": "协议代理（JSON）",
+        "input": "body",
+        "type": "object",
+        "required": false
+      }
+    ]
+  },
+  {
+    "id": "post-robot-docker-container-client-start",
+    "module": "机器人维护",
+    "label": "创建并启动客户端容器",
+    "method": "POST",
+    "path": "/robot/docker/container/client/start",
+    "fields": [],
+    "robotIdInBody": true
+  },
+  {
+    "id": "post-robot-docker-container-server-start",
+    "module": "机器人维护",
+    "label": "创建并启动协议容器",
+    "method": "POST",
+    "path": "/robot/docker/container/server/start",
+    "fields": [],
+    "robotIdInBody": true
+  },
+  {
+    "id": "delete-robot-docker-container-client-remove",
+    "module": "机器人维护",
+    "label": "停止并移除客户端容器",
+    "method": "DELETE",
+    "path": "/robot/docker/container/client/remove",
+    "fields": [],
+    "robotIdInBody": true
+  },
+  {
+    "id": "delete-robot-docker-container-server-remove",
+    "module": "机器人维护",
+    "label": "停止并移除协议容器",
+    "method": "DELETE",
+    "path": "/robot/docker/container/server/remove",
+    "fields": [],
+    "robotIdInBody": true
+  },
+  {
+    "id": "delete-robot-remove",
+    "module": "机器人维护",
+    "label": "删除机器人实例及其数据",
+    "method": "DELETE",
+    "path": "/robot/remove",
+    "fields": [],
+    "robotIdInBody": true,
+    "confirmText": "删除机器人数据"
+  },
+  {
+    "id": "post-robot-import-login-data",
+    "module": "设备登录与迁移",
+    "label": "导入已有设备登录数据",
+    "method": "POST",
+    "path": "/robot/import-login-data",
+    "fields": [
+      {
+        "key": "data",
+        "label": "设备登录备份",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-robot-login-data62",
+    "module": "设备登录与迁移",
+    "label": "使用支持 Data62 的账号登录",
+    "method": "POST",
+    "path": "/robot/login/data62",
+    "fields": [
+      {
+        "key": "username",
+        "label": "微信账号",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "password",
+        "label": "微信密码",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-robot-login-data62-sms-again",
+    "module": "设备登录与迁移",
+    "label": "重新发送登录短信",
+    "method": "POST",
+    "path": "/robot/login/data62-sms-again",
+    "fields": [
+      {
+        "key": "Cookie",
+        "label": "验证 Cookie",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "Url",
+        "label": "验证页面地址",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-robot-login-data62-sms-verify",
+    "module": "设备登录与迁移",
+    "label": "提交登录短信验证码",
+    "method": "POST",
+    "path": "/robot/login/data62-sms-verify",
+    "fields": [
+      {
+        "key": "Cookie",
+        "label": "验证 Cookie",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "Sms",
+        "label": "短信验证码",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "Url",
+        "label": "验证页面地址",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-robot-login-a16",
+    "module": "设备登录与迁移",
+    "label": "使用支持 A16 的账号登录",
+    "method": "POST",
+    "path": "/robot/login/a16",
+    "fields": [
+      {
+        "key": "username",
+        "label": "微信账号",
+        "input": "body",
+        "type": "string",
+        "required": true
+      },
+      {
+        "key": "password",
+        "label": "微信密码",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "post-wxapp-qrcode-auth-login",
+    "module": "设备登录与迁移",
+    "label": "小程序二维码授权",
+    "method": "POST",
+    "path": "/wxapp/qrcode-auth-login",
+    "fields": [
+      {
+        "key": "qrcode",
+        "label": "小程序二维码图片",
+        "input": "formData",
+        "type": "file",
+        "required": true
+      }
+    ]
+  },
+  {
+    "id": "get-wx-admin-probe",
+    "module": "后台账号与接口",
+    "label": "检查后台服务",
+    "method": "GET",
+    "path": "/probe",
+    "fields": [],
+    "noRobot": true,
+    "raw": true
+  },
+  {
+    "id": "get-wx-admin-swagger",
+    "module": "后台账号与接口",
+    "label": "下载 OpenAPI 文档",
+    "method": "GET",
+    "path": "/swagger/doc.json",
+    "fields": [],
+    "noRobot": true,
+    "raw": true,
+    "download": true
+  },
+  {
+    "id": "get-wx-admin-oauth-qr",
+    "module": "后台账号与接口",
+    "label": "获取微信公众号授权二维码",
+    "method": "GET",
+    "path": "/oauth/official-account/url",
+    "fields": [],
+    "noRobot": true,
+    "raw": true
+  },
+  {
+    "id": "get-wx-admin-user",
+    "module": "后台账号与接口",
+    "label": "查看后台用户",
+    "method": "GET",
+    "path": "/user/self",
+    "fields": [],
+    "noRobot": true
+  },
+  {
+    "id": "post-wx-admin-refresh-token",
+    "module": "后台账号与接口",
+    "label": "刷新 API 令牌",
+    "method": "POST",
+    "path": "/user/api-token/refresh",
+    "fields": [],
+    "noRobot": true
+  },
+  {
+    "id": "delete-wx-admin-logout",
+    "module": "后台账号与接口",
+    "label": "退出 wxbot 管理后台",
+    "method": "DELETE",
+    "path": "/user/logout",
+    "fields": [],
+    "noRobot": true
+  },
+  {
+    "id": "get-robot--view",
+    "module": "机器人维护",
+    "label": "查看机器人详情",
+    "method": "GET",
+    "path": "/robot/view",
+    "fields": []
+  },
+  {
+    "id": "get-robot--docker--image--pull",
+    "module": "机器人维护",
+    "label": "拉取机器人镜像",
+    "method": "GET",
+    "path": "/robot/docker/image/pull",
+    "fields": [],
+    "stream": true
+  },
+  {
+    "id": "get-robot--pprof",
+    "module": "运行诊断",
+    "label": "下载运行诊断",
+    "method": "GET",
+    "path": "/pprof/debug/pprof/",
+    "fields": [
+      {
+        "key": "profile",
+        "label": "诊断类型",
+        "input": "query",
+        "type": "string",
+        "required": false
+      },
+      {
+        "key": "seconds",
+        "label": "采样秒数",
+        "input": "query",
+        "type": "integer",
+        "required": false
+      },
+      {
+        "key": "debug",
+        "label": "文本详细程度",
+        "input": "query",
+        "type": "integer",
+        "required": false
+      }
+    ],
+    "raw": true,
+    "download": true
+  },
+  {
+    "id": "post-robot--pprof-symbol",
+    "module": "运行诊断",
+    "label": "查询运行诊断符号",
+    "method": "POST",
+    "path": "/pprof/debug/pprof/symbol",
+    "fields": [
+      {
+        "key": "symbols",
+        "label": "符号地址（以 + 分隔）",
+        "input": "body",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "raw": true,
+    "download": true
+  }
+]

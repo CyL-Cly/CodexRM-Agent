@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CodexRM · Agent 设置</title><link rel="stylesheet" href="/styles.css"><script src="/navigation.js" defer></script><script src="/app.js" defer></script><script src="/phone-transfers.js" defer></script><script src="/providers.js" defer></script><script src="/onebot.js" defer></script><script src="/wx-panel.js" defer></script><script src="/wx-operations.js" defer></script><script src="/wx-contact-actions.js" defer></script></head>
+<body>
+<header class="topbar">
+  <button id="nav-toggle" class="icon-button" type="button" aria-controls="settings-nav" aria-expanded="false" hidden>
+    <span aria-hidden="true">☰</span><span class="sr-only">打开导航</span>
+  </button>
+  <div class="breadcrumbs"><span>CodexRM</span><span aria-hidden="true">/</span><strong id="view-crumb">Agent 设置</strong></div>
+  <span id="status" class="status" role="status">正在加载</span>
+</header>
+<button id="nav-scrim" type="button" tabindex="-1" aria-label="关闭导航" hidden></button>
+<nav id="settings-nav" aria-label="设置导航" hidden>
+  <div class="sidebar-brand"><span class="brand" aria-hidden="true">CR</span><strong>CodexRM</strong></div>
+  <div class="nav-group"><p class="nav-label">Agent</p>
+<a class="nav-link" data-route="overview" href="?view=overview"><span class="nav-icon" aria-hidden="true">◫</span>仪表盘</a>
+<a class="nav-link" data-route="connection" href="?view=connection"><span class="nav-icon" aria-hidden="true">⇄</span>服务器连接</a>
+<a class="nav-link" data-route="devices" href="?view=devices"><span class="nav-icon" aria-hidden="true">▣</span>设备配对</a>
+<a class="nav-link" id="nav-phone-transfers" data-route="phone-transfers" href="?view=phone-transfers" hidden><span class="nav-icon" aria-hidden="true">⇅</span>文件传输助手</a>
+<a class="nav-link" data-route="providers" href="?view=providers"><span class="nav-icon" aria-hidden="true">◇</span>模型供应商</a>
+</div>
+  <div class="nav-group" id="nav-onebot" hidden><p class="nav-label">QQ 机器人</p>
+<a class="nav-link" data-route="onebot" href="?view=onebot"><span class="nav-icon" aria-hidden="true">◉</span>OneBot 11</a>
+</div>
+  <div class="nav-group" id="nav-wx" hidden><p class="nav-label">微信机器人</p>
+<a class="nav-link" data-route="wx-overview" href="?view=wx-overview"><span class="nav-icon" aria-hidden="true">⊞</span>服务总览</a>
+<a class="nav-link" data-route="wx-robots" href="?view=wx-robots"><span class="nav-icon" aria-hidden="true">◎</span>账号与登录</a>
+<a class="nav-link" data-route="wx-contacts" href="?view=wx-contacts"><span class="nav-icon" aria-hidden="true">▤</span>通讯录与群聊</a>
+<a class="nav-link" data-route="wx-commands" href="?view=wx-commands"><span class="nav-icon" aria-hidden="true">⌘</span>插件命令</a>
+<div class="nav-branch">
+  <a class="nav-link" data-route="wx-operations" href="?view=wx-operations"><span class="nav-icon" aria-hidden="true">⊡</span>功能管理</a>
+  <button id="wx-nav-toggle" class="nav-chevron" type="button" aria-label="展开功能管理菜单" aria-controls="wx-nav-modules" aria-expanded="false"><span aria-hidden="true">›</span></button>
+</div>
+<div id="wx-nav-modules" class="nav-submenu" role="group" aria-label="功能管理二级菜单" hidden></div>
+<a class="nav-link" data-route="wx-maintenance" href="?view=wx-maintenance"><span class="nav-icon" aria-hidden="true">⚙</span>服务维护</a>
+<a class="nav-link" data-route="wx-cache" href="?view=wx-cache"><span class="nav-icon" aria-hidden="true">▱</span>转发记录缓存</a>
+</div>
+  <div class="nav-group" id="nav-updates" hidden><p class="nav-label">系统</p>
+<a class="nav-link" data-route="updates" href="?view=updates"><span class="nav-icon" aria-hidden="true">↻</span>Agent 更新</a>
+</div>
+</nav>
+<main id="main">
+<form id="login-form" class="card" aria-labelledby="login-title" method="post" hidden>
+  <div class="section-title"><h1 id="login-title">Agent 设置</h1></div>
+<label for="settings-password">设置密码</label><input id="settings-password" type="password" required autocomplete="current-password" spellcheck="false">
+<div class="form-footer"><p class="hint">密码保存在 Agent 配置目录中的 settings-access.json。</p><button id="login" class="primary" type="submit">登录</button></div>
+</form>
+<div id="settings-content" hidden>
+  <h1 id="view-title" tabindex="-1">仪表盘</h1>
+<div data-page="overview" hidden>
+<div class="dashboard-grid">
+  <div class="card stat-card"><span class="metric-label">中继连接</span><strong id="overview-connection">正在加载</strong><span id="overview-server" class="hint"></span><a class="secondary" data-route="connection" href="?view=connection">配置连接</a></div>
+  <div class="card stat-card"><span class="metric-label">已授权设备</span><strong id="overview-devices">—</strong><span class="hint">浏览器、桌面及手机</span><a class="secondary" data-route="devices" href="?view=devices">管理设备</a></div>
+  <div class="card stat-card" id="overview-wx" hidden><span class="metric-label">微信机器人</span><strong id="overview-wx-state">检查中</strong><span id="overview-wx-accounts" class="hint">正在读取账号</span><a class="secondary" data-route="wx-overview" href="?view=wx-overview">管理机器人</a></div>
+  <div class="card stat-card" id="overview-onebot" hidden><span class="metric-label">OneBot 11</span><strong id="overview-onebot-state">未启用</strong><span id="overview-onebot-detail" class="hint">QQ 私聊与群聊</span><a class="secondary" data-route="onebot" href="?view=onebot">配置 OneBot</a></div>
+</div>
+</div>
+<div data-page="connection" hidden>
+<form id="settings-form"><section class="card"><div class="section-title"><h2>服务器连接</h2></div>
+<label for="server">远程服务器</label><input id="server" name="server" type="url" placeholder="https://your-server.example" required autocomplete="url" spellcheck="false"><p class="hint">填写用于远程访问的 CodexRM 服务器地址。</p>
+<label for="key">连接授权密钥</label><div class="secret"><input id="key" name="key" type="password" autocomplete="new-password" placeholder="输入服务器的连接授权密钥"><button id="toggle-key" class="text-button" type="button" aria-label="显示连接授权密钥">显示</button></div><p id="key-hint" class="hint">公共中继无需密钥。自托管服务器按管理员提供的信息填写。</p>
+<label id="clear-key-row" class="inline-field key-clear" hidden><input id="clear-key" type="checkbox">清除已保存的密钥</label>
+<p id="package-settings" class="hint" hidden>此版本由 Windows 管理更新。更换安装磁盘：Windows 设置 → 应用 → 已安装的应用 → CodexRM Agent → 移动。</p>
+<div class="section-title"><h2>远程访问权限</h2></div>
+<label class="inline-field"><input id="allow-file-management" type="checkbox">允许远程管理文件</label>
+<p class="hint">默认关闭。关闭时不能浏览电脑目录或使用「发送到电脑」；P2P 直连后仍可下载 AI 回复明确链接的工作区文件。保存会重新连接 Agent。</p>
+<div class="form-footer"><span id="connection-error" class="hint"></span><button id="save" class="primary" type="submit">保存并连接</button></div>
+<div class="status-details" aria-label="连接详情"><p id="connection-phase" class="hint" hidden></p><p id="last-connected" class="hint" hidden></p><p id="next-retry" class="hint" hidden></p></div></section></form>
+</div>
+<div data-page="devices" hidden>
+<section class="card"><div class="section-title"><div><h2>生成配对码</h2><p class="hint">在远程网页输入配对码，或用另一台设备扫描二维码。</p></div><button id="pair" class="secondary" type="button">生成配对码</button></div>
+<div id="pair-result" class="pair-result" hidden><img id="qr" width="176" height="176" alt="扫描二维码配对"><div><p class="eyebrow">一次性配对码</p><p id="pair-code" class="pair-code"></p><p id="expires" class="hint"></p><div class="pair-actions"><button id="copy-code" class="secondary" type="button">复制配对码</button><a id="pair-link" target="_blank" rel="noreferrer">打开远程网页 ↗</a></div></div></div></section>
+<section class="card"><div class="section-title"><div><h2>已配对设备管理</h2><p class="hint">服务器自动移除超过 7 天未连接的设备；移除后需重新配对。</p></div><button id="refresh" class="text-button" type="button">刷新列表</button></div><div id="devices" class="devices"><p class="empty">保存连接配置后，可查看已配对的设备。</p></div></section>
+</div>
+<div data-page="onebot" hidden>
+<section class="card">
+  <div class="section-title"><div><h2>OneBot 11 连接</h2><p class="hint">适配 NapCat、LLOneBot、Lagrange.OneBot 等 OneBot 11 实现。配置仅保存在本机 Agent。</p></div><button id="onebot-refresh" class="secondary" type="button">刷新状态</button></div>
+  <p id="onebot-status" class="hint" role="status">正在读取状态…</p><p id="onebot-error" class="hint" role="alert"></p>
+  <form id="onebot-form">
+    <label class="inline-field"><input id="onebot-enabled" type="checkbox">启用 OneBot 11 适配器</label>
+    <label for="onebot-mode">通信方式</label><select id="onebot-mode"><option value="ws-reverse">反向 WebSocket（Agent 监听，推荐）</option><option value="ws">正向 WebSocket（Agent 主动连接）</option><option value="http">HTTP API + HTTP POST 事件</option></select>
+    <label for="onebot-url">OneBot 服务地址</label><input id="onebot-url" placeholder="ws://127.0.0.1:3001 或 http://127.0.0.1:3000" autocomplete="off" spellcheck="false"><p class="hint">正向 WebSocket 和 HTTP API 必填；反向模式由 Agent 监听，无需填写。</p>
+    <label for="onebot-listen">Agent 事件监听地址</label><input id="onebot-listen" placeholder="127.0.0.1:6701" autocomplete="off" spellcheck="false"><p class="hint">反向 WebSocket / HTTP POST 使用。非回环监听必须配合 Access Token 和防火墙；启用工作区工具或管理员时，回环监听也必须设置 Token。</p>
+    <label for="onebot-token">Access Token</label><div class="secret"><input id="onebot-token" type="password" autocomplete="new-password" spellcheck="false"><button id="onebot-toggle-token" class="text-button" type="button">显示</button></div><p id="onebot-token-hint" class="hint">留空保留已保存的 Token。</p>
+    <label class="inline-field"><input id="onebot-clear-token" type="checkbox">清除已保存的 Access Token</label>
+    <label for="onebot-self-id">机器人 QQ 号</label><input id="onebot-self-id" type="number" min="0" step="1" placeholder="0 表示从事件自动识别"><p class="hint">群聊 @ 检测需要机器人 QQ；通常可留 0，由事件 self_id 自动识别。</p>
+    <label for="onebot-message-limit">单条回复最大字数</label><input id="onebot-message-limit" type="number" min="200" max="4000" step="100" value="1800" required>
+    <details><summary>图片读取与安全</summary>
+      <label class="inline-field"><input id="onebot-remote-media" type="checkbox">允许下载公网图片 URL（最大 5 MiB）</label>
+      <label class="inline-field"><input id="onebot-private-media" type="checkbox">允许图片 URL 访问回环或私有网络（仅在可信 OneBot 环境启用）</label>
+      <label class="inline-field"><input id="onebot-local-media" type="checkbox">允许读取 OneBot get_image 返回的本机绝对路径</label>
+      <p class="hint">支持 PNG、JPEG、GIF、WebP；每条消息最多 4 张。下载会校验实际连接 IP，默认阻止回环、私有和链路本地地址。</p>
+    </details>
+    <details><summary>合并转发</summary>
+      <label class="inline-field"><input id="onebot-forward-lookup" type="checkbox">允许按转发 ID 调用 get_forward_msg 读取内容</label>
+      <p class="hint">默认只保留合并转发占位。OneBot 11 无法验证转发 ID 属于当前会话；仅在协议端可信且需要读取转发内容时开启。</p>
+    </details>
+    <details><summary>好友申请与群邀请</summary>
+      <label class="inline-field"><input id="onebot-accept-friend" type="checkbox">自动接受已授权私聊 QQ 的好友申请</label>
+      <label class="inline-field"><input id="onebot-accept-group" type="checkbox">自动接受已授权群的入群邀请</label>
+      <p class="hint">默认忽略所有申请。开启后也不会接受陌生 QQ 或未配置群；加群后的聊天权限仍按下方群配置执行。</p>
+    </details>
+    <details open><summary>私聊权限</summary><p class="hint">未列出的 QQ 私聊会被忽略。管理员模式可完整操作 Agent 主机，仅授予可信账号。</p><div id="onebot-users"></div><button id="onebot-add-user" class="secondary" type="button">添加私聊 QQ</button></details>
+    <details><summary>群聊权限</summary><p class="hint">未列出的群会被忽略。共享会话由全群共用；成员会话按 QQ 隔离。</p><div id="onebot-groups"></div><button id="onebot-add-group" class="secondary" type="button">添加群聊</button></details>
+    <div class="form-footer"><span class="hint">聊天命令：/help、/new、/stop、/status、/id</span><button id="onebot-save" class="primary" type="submit">保存并应用</button></div>
+  </form>
+</section>
+<section class="card"><div class="section-title"><div><h2>测试消息</h2><p class="hint">保存并连接后，向指定私聊或群发送一条消息，不启动 Codex 任务。</p></div></div>
+  <form id="onebot-test-form"><label for="onebot-test-kind">目标类型</label><select id="onebot-test-kind"><option value="private">私聊</option><option value="group">群聊</option></select><label for="onebot-test-target">QQ 号或群号</label><input id="onebot-test-target" inputmode="numeric" pattern="[1-9][0-9]*" required><label for="onebot-test-text">测试内容</label><textarea id="onebot-test-text" rows="3" maxlength="4000" required>CodexRM OneBot 11 收发测试</textarea><div class="form-footer"><button id="onebot-test-send" class="secondary" type="submit">发送测试消息</button></div></form>
+</section>
+</div>
+<section id="wx-card" hidden>
+  <div class="wx-toolbar">
+    <div id="wx-robot-scope" class="account-scope" hidden>
+      <label for="wx-robot">机器人实例</label><select id="wx-robot"></select>
+      <p id="wx-robot-state" class="hint" role="status"></p>
+    </div>
+    <div id="wx-account-scope" class="account-scope" hidden>
+      <label for="wx-account">本机微信账号</label><select id="wx-account" disabled><option value="">正在读取账号</option></select><p id="wx-status" class="hint" role="status"></p>
+    </div>
+    <button id="wx-refresh" class="secondary" type="button">刷新状态</button>
+  </div>
+  <div data-page="wx-overview" hidden>
+<section class="card">
+<div class="section-title"><h2>安装与运行状态</h2></div>
+<p id="wx-probe-status" class="hint" role="status">正在检查本机环境…</p>
+    <div id="wx-service-summary" class="service-summary" hidden>
+      <div><span>公共服务</span><strong id="wx-services-count">—</strong></div>
+      <div><span>微信登录</span><strong id="wx-logged-in-count">—</strong></div>
+      <div><span>部署方式</span><strong id="wx-install-mode">—</strong></div>
+    </div>
+    <div id="wx-overview-links" class="quick-links" hidden><a class="secondary" data-route="wx-robots" href="?view=wx-robots">管理账号</a><a class="secondary" data-route="wx-contacts" href="?view=wx-contacts">打开通讯录</a><a class="secondary" data-route="wx-maintenance" href="?view=wx-maintenance">维护服务</a></div>
+    <div id="wx-setup">
+    <div id="wx-existing" class="wx-existing" hidden></div>
+<label id="wx-token-row" hidden for="wx-admin-token">现有后台管理凭据</label>
+<input id="wx-admin-token" type="password" hidden autocomplete="current-password" spellcheck="false">
+<details id="wx-admin-oauth" hidden>
+<summary>使用微信公众号授权</summary>
+<div class="form-footer"><button id="wx-admin-oauth-qr" class="secondary" type="button">获取授权二维码</button></div>
+<img id="wx-admin-oauth-image" width="224" height="224" alt="微信公众号授权二维码" hidden>
+<label for="wx-admin-oauth-code">公众号返回的授权码</label>
+<input id="wx-admin-oauth-code" type="password" autocomplete="off" spellcheck="false">
+</details>
+<pre id="wx-helper-cmd" class="wx-helper" hidden></pre>
+    <details id="wx-optional-services">
+  <summary>可选服务</summary>
+  <p class="hint">默认只安装微信登录、Codex 接入及运维所需组件。</p>
+  <label class="inline-field"><input type="checkbox" value="word-cloud"> 词云</label>
+  <label class="inline-field"><input type="checkbox" value="jimeng"> 即梦</label>
+  <label class="inline-field"><input type="checkbox" value="mcp"> wxbot 自带 MCP 服务</label>
+</details>
+<div id="wx-setup-actions" class="form-footer">
+  <button id="wx-install" class="primary" type="button">安装微信机器人</button>
+  <button id="wx-takeover" class="secondary" type="button">接管已有安装</button>
+</div>
+</div>
+</section>
+</div>
+  <div id="wx-task" class="card" hidden><div class="section-title"><h2>任务进度</h2></div>
+  <p id="wx-task-step" class="hint"></p>
+  <ul id="wx-task-images" class="wx-images"></ul>
+  <p id="wx-task-error" class="hint wx-error" role="alert"></p>
+  <div class="form-footer"><button id="wx-task-retry" class="secondary" type="button">重试</button></div>
+</div>
+  <div id="wx-unavailable" class="card" hidden><p class="hint">请先安装或接管微信机器人。</p><a class="secondary" data-route="wx-overview" href="?view=wx-overview">前往服务总览</a></div>
+  <div id="wx-manage" hidden>
+    <div data-page="wx-robots" hidden>
+<section class="card">
+<div class="section-title"><h2>微信登录与接入</h2></div>
+<label for="wx-login-type">扫码设备</label><select id="wx-login-type"><option value="ipad">iPad</option><option value="win">Windows</option><option value="mac">Mac</option><option value="car">车载微信</option></select>
+<label class="inline-field" id="wx-login-pretender-row" hidden><input id="wx-login-pretender" type="checkbox"> 使用 iPad 兼容登录</label>
+<div class="form-footer"><button id="wx-robot-login" class="primary" type="button">获取扫码二维码</button><button id="wx-robot-activate" class="secondary" type="button">同步并接入 Codex</button><button id="wx-robot-logout" class="text-button" type="button">退出微信</button><button id="wx-robot-export" class="text-button" type="button">导出登录数据</button></div>
+<details id="wx-test-message"><summary>测试消息收发</summary>
+<p class="hint">填写测试好友的 WxID，机器人会发送一条测试消息。让好友从微信回复，再查看最近收到的消息。</p>
+<form id="wx-test-message-form"><label for="wx-test-target">测试好友 WxID</label><input id="wx-test-target" maxlength="64" required autocomplete="off"><label for="wx-test-text">测试消息</label><input id="wx-test-text" maxlength="256" value="CodexRM 微信机器人收发测试" required><div class="form-footer"><button class="secondary" id="wx-test-receive" type="button">查看最近消息</button><button class="primary" id="wx-test-send" type="submit">发送测试消息</button></div></form><p id="wx-test-result" class="hint" role="status"></p><pre id="wx-test-received" hidden></pre></details>
+<div id="wx-scan" hidden><img id="wx-scan-image" width="224" height="224" alt="微信登录二维码"><p id="wx-scan-status" class="hint" role="status"></p>
+<form id="wx-scan-code-form" hidden><label for="wx-scan-code">微信安全验证码</label><input id="wx-scan-code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" required><button id="wx-submit-scan-code" class="primary" type="submit">提交验证码</button></form>
+<button id="wx-open-slider" class="secondary" type="button" hidden>进行滑块验证</button>
+<button id="wx-auto-slider" class="secondary" type="button" hidden>使用已配置的自动验证</button>
+<div id="wx-scan-slider" hidden>
+  <iframe id="wx-slider-frame" title="微信滑块验证" sandbox="allow-scripts allow-forms" referrerpolicy="no-referrer"></iframe>
+  <button id="wx-slider-continue" class="primary" type="button" disabled>已在微信确认登录</button>
+</div></div>
+</section><details class="card create-robot"><summary>添加机器人</summary><form id="wx-robot-create-form"><label for="wx-robot-name">新机器人名称</label><input id="wx-robot-name" maxlength="80" required><label for="wx-robot-version">微信协议版本</label><select id="wx-robot-version"><option>8.0.74</option><option>8.0.59</option></select><details><summary>代理设置</summary><label for="wx-robot-proxy-address">代理地址</label><input id="wx-robot-proxy-address"><label for="wx-robot-proxy-user">代理用户名</label><input id="wx-robot-proxy-user" autocomplete="off"><label for="wx-robot-proxy-password">代理密码</label><input id="wx-robot-proxy-password" type="password" autocomplete="off"></details><div class="form-footer"><button id="wx-robot-create" class="secondary" type="submit">创建机器人</button></div></form></details>
+</div>
+    <div data-page="wx-maintenance" hidden>
+<section id="wx-maintenance" class="card"><div class="section-title"><h2>服务维护</h2></div><p id="wx-maintenance-state" class="hint" role="status"></p><form id="wx-maintenance-form" hidden><label for="wx-maintenance-action">操作</label><select id="wx-maintenance-action"><option value="start">启动服务</option><option value="stop">停止服务</option><option value="restart">重启服务</option><option value="backup">备份数据</option><option value="restore">恢复备份</option><option value="upgrade">升级公共服务和机器人客户端</option><option value="upgrade-adopted-clients" hidden disabled>升级已接管的机器人客户端</option><option value="uninstall">卸载服务并保留数据</option><option value="purge">卸载并清除当前安装数据（保留备份）</option></select><div id="wx-backup-picker" hidden><label for="wx-backup-file">备份</label><select id="wx-backup-file"></select></div><div class="form-footer"><button id="wx-maintenance-run" class="secondary" type="submit">执行操作</button></div></form></section>
+</div>
+    <div data-page="wx-cache" hidden>
+<section id="wx-cache" class="card"><div class="section-title"><h2>转发记录缓存</h2></div><p id="wx-cache-usage" class="hint" role="status"></p><div id="wx-cache-records"></div><form id="wx-cache-form"><label for="wx-cache-days">保留天数</label><input id="wx-cache-days" type="number" min="1" max="90" value="7" required><div class="form-footer"><button id="wx-cache-save" class="secondary" type="submit">保存期限并清理过期文件</button></div></form></section>
+</div>
+    <div data-page="wx-operations" hidden>
+      <section id="wx-operation-panel" class="card">
+        <p id="wx-op-status" class="hint" role="status">正在读取功能菜单…</p>
+        <nav id="wx-op-modules" class="wx-module-grid" aria-label="微信机器人功能" hidden></nav>
+        <div id="wx-op-module-page" hidden>
+          <div class="section-title">
+            <h2 id="wx-op-module-title"></h2>
+            <a class="text-button" data-route="wx-operations" href="?view=wx-operations">全部功能</a>
+          </div>
+          <nav id="wx-op-actions" class="wx-action-menu" aria-label="功能操作"></nav>
+          <div id="wx-op-detail" hidden></div>
+        </div>
+      </section>
+</div>
+    <div id="wx-account-required" class="card" hidden><p class="hint">请先登录微信账号后再配置权限。</p><a class="secondary" data-route="wx-robots" href="?view=wx-robots">前往账号与登录</a></div>
+    <div id="wx-config" hidden>
+      <div data-page="wx-contacts" hidden>
+<section class="card">
+<details><summary>当前账号的 CodexRM 接入设置</summary><form id="wx-form" method="post"><label class="inline-field"><input id="wx-enabled" type="checkbox">启用 CodexRM</label>
+<label for="wx-workspace">工作区别名</label><input id="wx-workspace" maxlength="128" autocomplete="off">
+<div class="form-footer"><button id="wx-disconnect" class="text-button" type="button">解除授权</button><button id="wx-save" class="primary" type="submit">保存</button></div></form></details>
+<details id="wx-default-notices" class="contact-section">
+  <summary>默认进退群通告</summary>
+  <div id="wx-default-notice-editor"></div>
+</details>
+</section>
+      <div class="contacts-layout">
+        <section class="card">
+<div class="section-title"><h2>联系人与群聊</h2></div><div class="wx-contact-toolbar">
+  <label for="wx-contact-keyword">搜索好友或群聊</label>
+  <input id="wx-contact-keyword" maxlength="64" placeholder="昵称、备注或 WxID" autocomplete="off" spellcheck="false">
+        <label class="sr-only" for="wx-contact-kind">联系人类型</label>
+        <select id="wx-contact-kind"><option value="">全部类型</option><option value="friend">好友</option><option value="chat_room">群聊</option><option value="official_account">公众号</option></select>
+          <div class="form-footer">
+    <button id="wx-contact-search" class="secondary" type="button">搜索</button>
+    <button id="wx-contact-sync" class="text-button" type="button">同步通讯录</button>
+  </div>
+</div>
+<p id="wx-contact-meta" class="hint"></p>
+<div id="wx-contacts" class="devices"></div>
+<div class="form-footer"><button id="wx-contacts-prev" class="text-button" type="button" disabled>上一页</button><button id="wx-contacts-next" class="text-button" type="button" disabled>下一页</button></div>
+<details id="wx-directory-actions" class="contact-section">
+  <summary>添加好友与群聊</summary>
+  <div id="wx-directory-operations"></div>
+</details>
+</section>
+        <section class="card">
+<div id="wx-contact-detail" tabindex="-1">
+<h2 id="wx-contact-selection">联系人详情</h2>
+<p id="wx-contact-identity" class="hint">从列表选择好友或群聊。</p>
+<div id="wx-contact-tabs" class="wx-action-menu" role="group" aria-label="联系人详情" hidden></div>
+<div id="wx-contact-operations"></div>
+<div id="wx-contact-settings" hidden>
+<p id="wx-contact-detail-status" class="hint" role="status" hidden></p>
+<section id="wx-group-notices" class="contact-section" aria-labelledby="wx-group-notices-title" hidden>
+  <h3 id="wx-group-notices-title">成员进退群通告</h3>
+  <div id="wx-group-notice-editor"></div>
+</section>
+<template id="wx-notice-editor-template">
+  <p class="hint" role="status"></p>
+  <button class="secondary" data-retry type="button" hidden>重新读取通告设置</button>
+  <form hidden>
+    <div data-notice-fields></div>
+    <div class="form-footer">
+      <button class="primary" type="submit">保存通告</button>
+      <button class="text-button" data-copy-defaults type="button" hidden>填入默认通告</button>
+    </div>
+  </form>
+</template>
+<template id="wx-notice-fields-template">
+  <div class="wx-notice-fields">
+    <label class="inline-field"><input data-field="enabled" type="checkbox"><span data-notice-label></span></label>
+    <div data-notice-content>
+      <label data-label="type">发送格式</label>
+      <select data-field="type">
+        <option value="text">纯文字</option><option value="emoji">表情包</option><option value="image">图片</option><option value="url">链接卡片</option>
+      </select>
+      <div data-text-format data-format="text url">
+        <label data-label="text"></label>
+        <textarea data-field="text" rows="2" maxlength="255" required></textarea>
+      </div>
+      <div data-format="emoji">
+        <label data-label="emoji_md5">表情包 MD5</label>
+        <input data-field="emoji_md5" maxlength="64" autocomplete="off" spellcheck="false" required>
+        <label data-label="emoji_len">表情包长度（字节）</label>
+        <input data-field="emoji_len" type="number" min="1" max="2147483647" step="1" required>
+      </div>
+      <div data-format="image">
+        <label data-label="image_url">图片地址</label>
+        <input data-field="image_url" type="url" maxlength="255" autocomplete="off" required>
+      </div>
+      <div data-format="url">
+        <div data-extended>
+          <label data-label="card_title">卡片标题（可选）</label>
+          <input data-field="card_title" maxlength="255">
+        </div>
+        <div data-departure>
+          <label data-label="card_description">卡片说明（可选）</label>
+          <textarea data-field="card_description" rows="2" maxlength="255"></textarea>
+        </div>
+        <label data-label="url">卡片链接</label>
+        <input data-field="url" type="url" maxlength="255" autocomplete="off" required>
+        <div data-extended>
+          <label data-label="card_thumb_url">卡片封面地址（可选）</label>
+          <input data-field="card_thumb_url" type="url" maxlength="255" autocomplete="off">
+        </div>
+      </div>
+      <p class="hint" data-placeholder data-departure><code>{placeholder}</code> 会替换为退群成员的名字，可用在提醒文本、卡片标题和说明里。</p>
+    </div>
+  </div>
+</template>
+<form id="wx-group-form" class="contact-section" hidden>
+<h3>Codex 接入权限</h3>
+<label class="inline-field"><input id="wx-group-enabled" type="checkbox">启用本群的 Codex</label>
+<label for="wx-group-trigger">触发方式</label><select id="wx-group-trigger"><option value="mention">仅 @机器人</option><option value="all">所有支持的消息</option></select>
+<label for="wx-group-session">会话</label><select id="wx-group-session"><option value="shared">全群共享</option><option value="member">成员独立</option></select>
+<label for="wx-group-mode">工具权限</label><select id="wx-group-mode"><option value="text">仅 AI 聊天</option><option value="tools">工作区工具</option></select>
+<div id="wx-group-profile"></div>
+<label for="wx-group-commands">可调用的 Web 查询命令</label><select id="wx-group-commands" size="4" multiple></select>
+<label for="wx-group-member-picker">从群成员选择</label><select id="wx-group-member-picker"></select>
+<div class="form-footer"><button id="wx-group-members-sync" class="text-button" type="button">同步群成员</button><button id="wx-group-member-add" class="text-button" type="button">加入名单</button><button id="wx-group-admin-add" class="text-button" type="button">设为会话管理员</button></div>
+<label for="wx-group-members">允许使用的成员 WxID</label><textarea id="wx-group-members" rows="2" placeholder="留空允许本群所有成员。可用空格或换行分隔。"></textarea>
+<label for="wx-group-admins">共享会话管理员 WxID</label><textarea id="wx-group-admins" rows="2" placeholder="可以重置或停止共享会话的成员"></textarea>
+<div class="form-footer"><button id="wx-group-save" class="primary" type="submit">保存群设置</button></div>
+</form>
+<details id="wx-friend-manual">
+  <summary>按好友 WxID 配置 CodexRM 权限</summary>
+  <label for="wx-friend">好友 WxID</label><input id="wx-friend" maxlength="64" autocomplete="off" spellcheck="false">
+  <button id="wx-read-friend" class="secondary" type="button">读取好友权限</button>
+</details>
+<form id="wx-friend-form" class="contact-section" method="post" hidden><h3>Codex 接入权限</h3><label class="inline-field"><input id="wx-friend-enabled" type="checkbox">允许接入 CodexRM</label><label for="wx-friend-mode">访问模式</label><select id="wx-friend-mode"><option value="text">AI 聊天（含图片）</option><option value="tools">允许工作区工具</option><option value="admin">管理员（完整访问，从不审批）</option></select><div id="wx-friend-profile"></div><label for="wx-friend-commands">允许调用的命令（可多选）</label><select id="wx-friend-commands" size="4" multiple></select><div class="form-footer"><button id="wx-save-friend" class="secondary" type="submit">保存权限</button></div></form>
+<div id="wx-contact-plugin-settings"></div>
+</div>
+</div>
+</section>
+      </div>
+</div>
+      <div data-page="wx-commands" hidden>
+<section class="card">
+<div class="section-title"><h2>已注册命令</h2></div><div id="wx-commands" class="devices"></div>
+</section><section class="card">
+<div class="section-title"><h2>注册 Web 查询命令</h2></div><form id="wx-command-form" method="post"><label for="wx-command-name">Web 查询命令名</label><input id="wx-command-name" required maxlength="64"><label for="wx-command-url">接口地址</label><input id="wx-command-url" type="url" required><label for="wx-command-method">方法</label><select id="wx-command-method"><option>GET</option><option>POST</option></select><label for="wx-command-help">帮助</label><input id="wx-command-help" maxlength="512"><label for="wx-command-params">参数 JSON</label><textarea id="wx-command-params" rows="3"></textarea><label for="wx-command-response-field">响应字段</label><input id="wx-command-response-field"><label for="wx-command-timeout">超时秒数</label><input id="wx-command-timeout" type="number" min="1" max="30" value="10"><label for="wx-command-header-name">请求头名</label><input id="wx-command-header-name"><label for="wx-command-header-value">请求头值</label><input id="wx-command-header-value" type="password" autocomplete="off"><div class="form-footer"><button id="wx-register-command" class="secondary" type="submit">注册 Web 查询</button></div></form>
+</section>
+</div>
+    </div>
+  </div>
+</section>
+<div data-page="phone-transfers" hidden>
+  <section class="card">
+    <div class="section-title">
+      <div><h2>待发送 <span id="transfer-outbox-count"></span></h2><p class="hint">手机通过 P2P 接收文件。取消只移除发送缓存，不会删除电脑上的原文件，也不能撤回已完整送达的文件。</p></div>
+      <button id="transfer-refresh" class="secondary" type="button">刷新</button>
+    </div>
+    <p id="transfer-status" class="hint" role="status" hidden></p>
+    <div id="transfer-outbox" class="devices"></div>
+  </section>
+  <section class="card">
+    <div class="section-title"><div><h2>已接收 <span id="transfer-inbox-count"></span></h2><p class="hint">文件保存在本机的下载文件夹。点击文件名打开，仅打开可信来源的文件。</p></div></div>
+    <div id="transfer-inbox" class="devices"></div>
+  </section>
+</div>
+<div data-page="providers" hidden>
+<section class="card" id="provider-panel">
+<div class="provider-heading"><h2 id="provider-title">供应商列表</h2><button id="provider-back" class="secondary" type="button" hidden>返回</button></div>
+<p id="provider-status" class="hint" role="status"></p>
+<div id="provider-content"></div>
+</section>
+</div>
+<div data-page="updates" hidden>
+<section id="update-card" class="card" hidden><div class="section-title"><div><h2>检查更新</h2><p id="update-status" class="hint" role="status">启动时检查更新，之后每 20 小时自动检查一次。发现新版本后，等待所有进行中的对话和排队消息结束再自动安装。</p></div><button id="check-update" class="secondary" type="button">检查更新</button></div></section>
+<section id="linux-update-card" class="card" hidden><div class="section-title"><div><h2>Linux Agent 更新</h2><p class="hint">下载并校验更新包，停止 Agent 后替换二进制文件，再重新启动。</p></div><a class="secondary" href="https://github.com/CyL-Cly/CodexRM/releases" target="_blank" rel="noreferrer">查看 GitHub 发布 ↗</a></div></section>
+</div>
+<footer><span>CodexRM <span id="version"></span></span><span>关闭设置页面后 Agent 继续运行</span></footer>
+</div>
+</main>
+<div id="notice" class="toast" role="status" hidden></div>
+</body>
+</html>
